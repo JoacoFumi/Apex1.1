@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APEX</title>
+  <meta name="description" content="Entrenamiento de élite para pilotos virtuales. Telemetría profesional, coaching competitivo y preparación para el mundo real del automovilismo." />
+
+  <!-- Fuentes: condensada de impacto para titulares + utilitaria para textos cortos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts.css">
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header__inner">
+
+      <!-- Logo -->
+      <a href="#" class="logo" aria-label="Simracing Academy - Inicio">
+        <img class="logo-img" src="assets/logo-apex.png" alt="">
+      </a>
+
+      <!-- Acciones de header -->
+      <div class="header__actions">
+        <a href="#reserva" class="btn btn--primary btn--sm">
+          Reservá tu lugar
+          <img class="btn__icon" src="assets/flecha1.svg">
+        </a>
+
+        <!-- Botón menú hamburguesa: solo hover, sin lógica de apertura aún -->
+        <button class="btn btn--menu" type="button" aria-label="Abrir menú">
+          MENU
+          <span class="btn__dots" aria-hidden="true">
+            <span></span><span></span>
+          </span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <main>
+    <section class="hero" id="reserva">
+      <div class="hero__inner">
+
+        <!-- Columna de texto -->
+        <div class="hero__content">
+          <p class="hero__eyebrow">Entrenamiento de élite para pilotos virtuales</p>
+
+          <h1 class="hero__title">
+            <span class="hero__title-line hero__title-line--dark">No es un juego.</span>
+            <span class="hero__title-line hero__title-line--accent">Es tu futuro.</span>
+          </h1>
+
+          <p class="hero__subtitle">
+            Telemetría profesional. Coaching competitivo.<br>
+            Preparación para el mundo real del automovilismo.
+          </p>
+
+          <div class="hero__cta-group">
+            <a href="#entrenamientos" class="btn btn--primary">
+              Comenzá tu entrenamiento
+              <img class="btn__icon" src="assets/flecha1.svg">
+            </a>
+            <a href="#simulador" class="btn btn--outline">
+              Ver el simulador
+              <img class="btn__icon" src="assets/flecha1.svg">
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna visual -->
+        <div class="hero__visual" id="simulador">
+          <img
+            class="hero__image"
+            src="assets/simulacro4.png"
+            alt="Piloto entrenando en simulador de carreras de alto rendimiento"
+            loading="eager"
+          />
+        </div>
+
+      </div>
+    </section>
+    <!-- ===== MARCAS / BRANDS — marquee infinito ===== -->
+    <!-- .brands__viewport recorta lo que sobresale del track.
+         .brands__track es el que se mueve y contiene la lista DUPLICADA dos veces
+         (lista A + lista B idénticas) para que el loop se vea continuo sin saltos. -->
+    <section class="brands">
+      <div class="brands__viewport">
+        <div class="brands__track">
+
+          <!-- Lista A -->
+          <ul class="brands__list">
+            <li class="brands__item">
+              <img class="brands__logo" src="assets/brands/razer.svg" alt="Razer">
+            </li>
+            <li class="brands__item">
+              <img class="brands__logo" src="assets/brands/iracing.svg" alt="iRacing">
+            </li>
+            <li class="brands__item">
+              <img class="brands__logo brands__logo--square" src="assets/brands/corsair.svg" alt="Corsair">
+            </li>
+            <li class="brands__item">
+              <img class="brands__logo" src="assets/brands/fanatec.svg" alt="Fanatec">
+            </li>
+            <li class="brands__item">
+              <img class="brands__logo" src="assets/brands/logitech.svg" alt="Logitech G">
+            </li>
+            <li class="brands__item">
+              <img class="brands__logo" src="assets/brands/moza.svg" alt="Moza Racing">
+            </li>
+          </ul>
+
+          <!-- Lista B: copia EXACTA de la lista A (mismo orden), no la borres ni la cambies. Es la que hace que el movimiento se vea infinito y sin cortes -->
+          <ul class="brands__list" aria-hidden="true">
+            <li class="brands__item">
+              <img class="brands__logo" src="assets/brands/razer.svg" alt="">
+            </li>
+            <li class="brands__item">
+              <img class="brands__logo" src="assets/brands/iracing.svg" alt="">
+            </li>
+            <li class="brands__item">
+              <img class="brands__logo brands__logo--square" src="assets/brands/corsair.svg" alt="">
+            </li>
+            <li class="brands__item">
+              <img class="brands__logo" src="assets/brands/fanatec.svg" alt="">
+            </li>
+            <li class="brands__item">
+              <img class="brands__logo" src="assets/brands/logitech.svg" alt="">
+            </li>
+            <li class="brands__item">
+              <img class="brands__logo" src="assets/brands/moza.svg" alt="">
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FORMAMOS PILOTOS — grid de servicios ===== -->
+<section class="services" id="formamos-pilotos">
+  <div class="services__inner">
+
+    <!-- Encabezado: título a la izquierda, bajada a la derecha -->
+    <div class="services__header">
+      <h2 class="services__title">Formamos pilotos</h2>
+      <p class="services__subtitle">
+        Transformamos tus datos de conducción en mejoras concretas
+        para llevar tu rendimiento al siguiente nivel
+      </p>
+    </div>
+
+    <!-- Grid de tarjetas -->
+    <ul class="services__grid">
+
+      <li class="service-card">
+        <!-- Reemplazá este SVG por el ícono real -->
+        <img class="service-card__icon" src="assets/icons/telemetria.svg" alt="">
+        <h3 class="service-card__title">Análisis de<br>telemetría real</h3>
+        <p class="service-card__text">Comparación de trazadas, frenado, throttle maps</p>
+      </li>
+
+      <li class="service-card">
+        <img class="service-card__icon" src="assets/icons/coaching.svg" alt="">
+        <h3 class="service-card__title">Coaching<br>estilo academia</h3>
+        <p class="service-card__text">Feedback 1:1 basado en datos reales</p>
+      </li>
+
+      <li class="service-card">
+        <img class="service-card__icon" src="assets/icons/setup.svg" alt="">
+        <h3 class="service-card__title">Setup<br>engineering</h3>
+        <p class="service-card__text">Entender el setup como un ingeniero (no "turning casual")</p>
+      </li>
+
+      <li class="service-card">
+        <img class="service-card__icon" src="assets/icons/simulacion.svg" alt="">
+        <h3 class="service-card__title">Simulación<br>competitiva</h3>
+        <p class="service-card__text">Entrenamientos tipo qualifying / race pace / presión</p>
+      </li>
+
+      <li class="service-card">
+        <img class="service-card__icon" src="assets/icons/evaluacion.svg" alt="">
+        <h3 class="service-card__title">Evaluación<br>de performance</h3>
+        <p class="service-card__text">Ranking interno tipo "driver ladder"</p>
+      </li>
+
+      <li class="service-card">
+        <img class="service-card__icon" src="assets/icons/telemetria2.svg" alt="">
+        <h3 class="service-card__title">Análisis de<br>telemetría real</h3>
+        <p class="service-card__text">Comparación de trazadas, frenado, throttle maps</p>
+      </li>
+
+    </ul>
+
+  </div>
+</section>
+<!-- ===== CTA — "La pista te está esperando" ===== -->
+<!-- Reemplazá el src de .cta__bg-img por tu imagen de fondo (fotografía del simulador/pista) -->
+<section class="cta">
+
+  <div class="cta__bg">
+    <img class="cta__bg-img" src="assets/fondo2.png" alt="">
+    <div class="cta__overlay" aria-hidden="true"></div>
+  </div>
+
+  <div class="cta__inner">
+
+    <h2 class="cta__title">
+      <span class="cta__title-line cta__title-line--light">La pista te</span>
+      <span class="cta__title-line cta__title-line--accent">está esperando</span>
+    </h2>
+
+    <p class="cta__subtitle">
+      Telemetría profesional. Coaching competitivo.<br>
+      Preparación para el mundo real del automovilismo
+    </p>
+
+    <div class="cta__actions">
+      <a href="#reserva" class="btn btn--primary">
+        Reserva tu lugar
+        <img class="btn__icon" src="assets/flecha1.svg" alt="">
+      </a>
+      <a href="#" class="btn btn--outline-light">
+        Seguir viendo
+        <img class="btn__icon" src="assets/flecha1.svg" alt="">
+      </a>
+    </div>
+
+  </div>
+
+</section>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

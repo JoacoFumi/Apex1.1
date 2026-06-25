@@ -1,0 +1,667 @@
+/* =========================================================
+   SIMRACING ACADEMY — Hero Section
+   Paleta: negro (#0B0C0E), blanco, verde lima eléctrico (#C8FF1A),
+   azul racing (#1E3CFF) como acento del titular secundario.
+   ========================================================= */
+
+:root {
+  --color-black: #0b0c0e;
+  --color-white: #ffffff;
+  --color-lime: #8bed02;
+  --color-blue: #023ffc;
+  --color-light-text: #0c1f35;
+  --color-border: #15171a;
+
+  --font-display: 'Tusker', 'Montserrat', 'Arial Narrow', sans-serif;
+  --font-body: 'Montserrat', system-ui, sans-serif;
+
+  --container: 1440px;
+  --gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main{
+  height: 100dvh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-black);
+  background: var(--color-white);
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Foco visible accesible */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 3px;
+}
+
+/* ===== BOTONES ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  line-height: 1;
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 0.85rem 1.4rem;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--color-lime);
+  color: var(--color-black);
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  background: #b3e600;
+}
+
+.btn--outline {
+  background: transparent;
+  border-color: var(--color-black);
+  color: var(--color-black);
+}
+
+.btn--outline:hover {
+  transform: translateY(-2px);
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.btn--outline:hover .btn__icon {
+  filter: invert(1);
+}
+
+.btn--sm {
+  padding: 0.7rem 1.2rem;
+  font-size: 0.85rem;
+}
+
+.btn__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Botón menú: solo efecto hover, sin lógica de apertura */
+.btn--menu {
+  background: var(--color-black);
+  color: var(--color-white);
+  font-size: 0.85rem;
+  padding: 0.7rem 2.8rem 0.7rem 1.1rem; /* más espacio a la derecha para los dots */
+  position: relative;
+}
+
+.btn--menu:hover {
+  transform: translateY(-2px);
+  background: #1b1d20;
+}
+
+.btn__dots {
+  position: absolute;
+  top: 50%;
+  right: 6px; /* qué tan cerca del borde */
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: var(--color-white);
+  border-radius: 3px;
+  aspect-ratio: 1 / 1; /* lo fuerza a ser cuadrado */
+  height: calc(100% - 8px); /* cuadrado, nunca más alto que el botón */
+  padding: 0;
+}
+
+.btn__dots span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-black);
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.header__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem clamp(1.25rem, 4vw, 3rem);
+}
+
+.logo-img {
+  max-width: 100px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.logo strong {
+  font-weight: 900;
+}
+
+.logo__icon {
+  width: 22px;
+  height: 22px;
+  transform: rotate(8deg);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  max-width: var(--container);
+
+  height: 100dvh;
+
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+  overflow: hidden;
+  /*padding: clamp(2rem, 6vw, 4rem) clamp(1.25rem, 4vw, 3rem) clamp(4rem, 10vw, 7rem);*/
+}
+
+.hero__inner {
+  height: calc(100dvh - 90px);
+  transform: translateY(-45px);
+
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: var(--gap);
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Texto --- */
+.hero__eyebrow {
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: var(--color-black);
+  margin-bottom: 0rem;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.05;
+  font-size: clamp(4rem, 10vw, 9rem);
+  margin-bottom: 2rem;
+}
+
+.hero__title-line {
+  display: block;
+}
+
+.hero__title-line--dark {
+  color: var(--color-black);
+}
+
+.hero__title-line--accent {
+  color: var(--color-blue);
+}
+
+.hero__subtitle {
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  font-weight: 600;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-light-text);
+  margin-bottom: 2.25rem;
+}
+
+.hero__cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* --- Visual --- */
+.hero__visual {
+position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.hero__image {
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== MARCAS / BRANDS — marquee infinito ===== */
+.brands {
+  background: var(--color-black);
+  padding: clamp(1rem, 2.5vw, 1.75rem) 0;
+}
+
+/* Recorta el track para que solo se vea el ancho de la sección */
+.brands__viewport {
+  overflow: hidden;
+  padding-block: 14px;
+  /* mask-image: ... (esto se mantiene igual, no depende del overflow) */
+  /* Difumina los bordes izq/der para que los logos "aparezcan" suave, no de golpe.
+     Si no querés este efecto, borrá la línea de mask-image */
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+/* El track contiene las DOS listas (A + B) una al lado de la otra
+   y se desplaza de 0% a -50% (justo el ancho de una lista) para loopear sin corte */
+.brands__track {
+  display: flex;
+  width: max-content;
+
+  /* ===== VELOCIDAD DEL MOVIMIENTO =====
+    Subí el valor (ej: 60s) para que vaya MÁS LENTO.
+     Bajalo (ej: 15s) para que vaya MÁS RÁPIDO. */
+  animation: brands-scroll 15s linear infinite;
+}
+
+/* Pausa el movimiento mientras el mouse esté sobre la franja de marcas */
+.brands__viewport:hover .brands__track {
+  animation-play-state: paused;
+}
+
+@keyframes brands-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } /* -50% = ancho exacto de una lista (A o B) */
+}
+
+.brands__list {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  list-style: none;
+  padding: 0 clamp(1.25rem, 3vw, 2.5rem); /* separación entre el final de A y el inicio de B */
+}
+
+.brands__item {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+
+.brands__logo {
+  height: clamp(24px, 3vw, 34px);
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+
+  /* Estado normal: logo blanco pero ATENUADO (no blanco puro) */
+  filter: brightness(0) invert(1);
+  opacity: 0.45;
+
+  transition: opacity 0.25s ease;
+  /* el movimiento lo hace .brands__track; el logo en sí no se mueve solo */
+}
+
+.brands__logo--square {
+  transform: scale(1.6); /* más alto que el resto */
+}
+
+/* Blanco puro SOLO en el logo sobre el que está el mouse */
+.brands__item:hover .brands__logo {
+  opacity: 1;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .brands__logo {
+    height: 22px;
+  }
+}
+
+/* Si el usuario tiene activado "reducir movimiento" en su sistema, no animamos */
+@media (prefers-reduced-motion: reduce) {
+  .brands__track {
+    animation: none;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .hero {
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .hero__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__visual {
+    order: -1;
+    justify-content: center;
+  }
+
+  .hero__image {
+    width: min(90vw, 700px);
+    transform: none;
+  }
+
+  .hero__subtitle {
+    max-width: none;
+  }
+
+  .hero__stripe {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .header__inner {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .header__actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .hero__cta-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    justify-content: center;
+  }
+
+  .hero__title {
+    font-size: clamp(2.2rem, 11vw, 3rem);
+  }
+}
+
+/* ===== FORMAMOS PILOTOS — grid de servicios ===== */
+.services {
+  background: var(--color-white);
+  padding: clamp(3rem, 7vw, 6rem) 0;
+}
+
+.services__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+/* --- Encabezado: título izq / bajada der --- */
+.services__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.services__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.95;
+  color: var(--color-black);
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  flex: 0 1 auto;
+}
+
+.services__subtitle {
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.45;
+  color: var(--color-light-text);
+  text-align: right;
+  max-width: 40ch;
+  flex: 0 1 auto;
+}
+
+/* --- Grid de tarjetas --- */
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  list-style: none;
+}
+
+.service-card {
+  background: var(--color-black);
+  border: 1.5px solid var(--color-lime);
+  border-radius: 16px;
+  padding: clamp(2rem, 4vw, 2.75rem) clamp(1.25rem, 3vw, 2rem);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.service-card__icon {
+  width: clamp(56px, 6vw, 72px);
+  height: clamp(56px, 6vw, 72px);
+  object-fit: contain;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  /* Si tu SVG ya viene en verde lima, no necesitás filtros.
+     Si viniera en negro/otro color, podés forzarlo con: */
+  /* filter: brightness(0) saturate(100%) invert(78%) sepia(64%) saturate(900%) hue-rotate(50deg); */
+}
+
+.service-card__title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1.2;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  color: var(--color-white);
+  margin-bottom: 0.75rem;
+}
+
+.service-card__text {
+  font-size: clamp(0.78rem, 0.95vw, 0.85rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 26ch;
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet: 2 columnas. La 6ta tarjeta queda sola en la última fila,
+   se mantiene alineada a la izquierda (comportamiento natural del grid) */
+@media (max-width: 1024px) {
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: encabezado se apila (título arriba, bajada abajo, ambos a la izquierda)
+   y las tarjetas pasan a una sola columna */
+@media (max-width: 700px) {
+  .services__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .services__subtitle {
+    text-align: left;
+    max-width: none;
+  }
+
+  .services__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== CTA — "La pista te está esperando" ===== */
+.cta {
+  position: relative;
+  isolation: isolate; /* crea un contexto propio para que el overlay no afecte nada fuera de la sección */
+  overflow: hidden;
+  background: var(--color-blue); /* color de respaldo mientras no haya imagen, o si la imagen tarda en cargar */
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;       /* centra el .cta__inner verticalmente */
+  padding: clamp(2rem, 6vw, 4rem) clamp(1.25rem, 4vw, 3rem); /* aire mínimo en pantallas muy bajas */
+}
+
+/* --- Imagen de fondo + overlay --- */
+.cta__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cta__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tinte azul sobre la imagen para que el texto blanco/lima siempre tenga contraste,
+   igual que en la referencia. Ajustá el último valor de opacidad si tu imagen es muy clara u oscura */
+.cta__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--color-blue);
+  opacity: 0.78;
+}
+
+/* --- Contenido --- */
+.cta__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cta__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.06;
+  font-size: clamp(4rem, 14vw, 10rem);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.cta__title-line {
+  display: block;
+}
+
+.cta__title-line--light {
+  color: var(--color-white);
+}
+
+.cta__title-line--accent {
+  color: var(--color-lime);
+}
+
+.cta__subtitle {
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: rgba(223, 237, 255, 0.85);
+  margin-bottom: clamp(2rem, 4vw, 2.75rem);
+}
+
+.cta__actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* --- Variante de botón outline para fondo azul ---
+  El .btn--outline original tiene borde/texto negro (pensado para fondo blanco).
+  Acá necesitamos borde/texto blanco, así que se define una variante nueva
+  sin tocar la clase original. */
+.btn--outline-light {
+  background: transparent;
+  border-color: var(--color-white);
+  color: var(--color-white);
+}
+
+.btn--outline-light:hover {
+  transform: translateY(-2px);
+  background: var(--color-white);
+  color: var(--color-blue);
+}
+
+/* El ícono de flecha (assets/flecha1.svg) es negro por defecto.
+  Lo invertimos a blanco para que se vea sobre el botón transparente,
+   y lo devolvemos a su color original al hacer hover (fondo blanco). */
+.btn--outline-light .btn__icon {
+  filter: invert(1);
+}
+
+.btn--outline-light:hover .btn__icon {
+  filter: brightness(0) saturate(100%) invert(15%) sepia(95%) saturate(6000%) hue-rotate(225deg);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .cta__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta .btn {
+    justify-content: center;
+  }
+}

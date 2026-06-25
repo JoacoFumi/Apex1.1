@@ -1,0 +1,115 @@
+/* ===== CTA — "La pista te está esperando" ===== */
+.cta {
+  position: relative;
+  isolation: isolate; /* crea un contexto propio para que el overlay no afecte nada fuera de la sección */
+  overflow: hidden;
+  background: var(--color-blue); /* color de respaldo mientras no haya imagen, o si la imagen tarda en cargar */
+  padding: clamp(4rem, 10vw, 7rem) clamp(1.25rem, 4vw, 3rem);
+}
+
+/* --- Imagen de fondo + overlay --- */
+.cta__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cta__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tinte azul sobre la imagen para que el texto blanco/lima siempre tenga contraste,
+   igual que en la referencia. Ajustá el último valor de opacidad si tu imagen es muy clara u oscura */
+.cta__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--color-blue);
+  opacity: 0.78;
+}
+
+/* --- Contenido --- */
+.cta__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cta__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.95;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.cta__title-line {
+  display: block;
+}
+
+.cta__title-line--light {
+  color: var(--color-white);
+}
+
+.cta__title-line--accent {
+  color: var(--color-lime);
+}
+
+.cta__subtitle {
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: clamp(2rem, 4vw, 2.75rem);
+}
+
+.cta__actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* --- Variante de botón outline para fondo azul ---
+   El .btn--outline original tiene borde/texto negro (pensado para fondo blanco).
+   Acá necesitamos borde/texto blanco, así que se define una variante nueva
+   sin tocar la clase original. */
+.btn--outline-light {
+  background: transparent;
+  border-color: var(--color-white);
+  color: var(--color-white);
+}
+
+.btn--outline-light:hover {
+  transform: translateY(-2px);
+  background: var(--color-white);
+  color: var(--color-blue);
+}
+
+/* El ícono de flecha (assets/flecha1.svg) es negro por defecto.
+   Lo invertimos a blanco para que se vea sobre el botón transparente,
+   y lo devolvemos a su color original al hacer hover (fondo blanco). */
+.btn--outline-light .btn__icon {
+  filter: invert(1);
+}
+
+.btn--outline-light:hover .btn__icon {
+  filter: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .cta__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta .btn {
+    justify-content: center;
+  }
+}

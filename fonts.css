@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Tusker";
+    src: url("fonts/TuskerGrotesk-3800Super.ttf") format("truetype");
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "Tusker";
+    src: url("fonts/TuskerGrotesk-6500Medium.ttf") format("truetype");
+    font-weight: 400;
+}
