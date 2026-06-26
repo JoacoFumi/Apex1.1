@@ -18,7 +18,6 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-
   <!-- ===== HEADER ===== -->
   <header class="header">
     <div class="header__inner">
@@ -35,13 +34,28 @@
           <img class="btn__icon" src="assets/flecha1.svg">
         </a>
 
-        <!-- Botón menú hamburguesa: solo hover, sin lógica de apertura aún -->
-        <button class="btn btn--menu" type="button" aria-label="Abrir menú">
-          MENU
-          <span class="btn__dots" aria-hidden="true">
-            <span></span><span></span>
-          </span>
-        </button>
+        <!-- Menú: wrapper relativo para poder posicionar el panel justo debajo del botón -->
+        <div class="menu" data-menu>
+          <button class="btn btn--menu" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-panel" aria-label="Abrir menú de navegación" data-menu-trigger>
+            MENU
+            <span class="btn__dots" aria-hidden="true">
+              <span class="btn__dots-inner">
+                <span></span><span></span>
+              </span>
+            </span>
+          </button>
+
+          <!-- Panel de navegación: oculto por defecto, se muestra con la clase .is-open -->
+          <nav class="menu__panel" id="menu-panel" data-menu-panel aria-label="Navegación principal">
+            <ul class="menu__list">
+              <li><a href="#inicio" class="menu__link">Inicio</a></li>
+              <li><a href="#data" class="menu__link">Data</a></li>
+              <li><a href="#cockpit" class="menu__link">Cockpit</a></li>
+              <li><a href="#ingreso" class="menu__link">Ingreso</a></li>
+              <li><a href="#pilotos" class="menu__link">Pilotos</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
 
     </div>
@@ -49,7 +63,7 @@
 
   <!-- ===== HERO ===== -->
   <main>
-    <section class="hero" id="reserva">
+    <section class="hero" id="inicio">
       <div class="hero__inner">
 
         <!-- Columna de texto -->
@@ -147,7 +161,7 @@
     </section>
 
     <!-- ===== FORMAMOS PILOTOS — grid de servicios ===== -->
-<section class="services" id="formamos-pilotos">
+<section class="services" id="data">
   <div class="services__inner">
 
     <!-- Encabezado: título a la izquierda, bajada a la derecha -->
@@ -205,7 +219,7 @@
 </section>
 <!-- ===== CTA — "La pista te está esperando" ===== -->
 <!-- Reemplazá el src de .cta__bg-img por tu imagen de fondo (fotografía del simulador/pista) -->
-<section class="cta">
+<section class="cta" id="ingreso">
 
   <div class="cta__bg">
     <img class="cta__bg-img" src="assets/fondo2.png" alt="">

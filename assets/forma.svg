@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 902.74 712.07">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        mix-blend-mode: multiply;
+        stroke: #cffe00;
+        stroke-miterlimit: 10;
+        stroke-width: 122.4px;
+      }
+
+      .cls-2 {
+        filter: url(#outer-glow-5);
+      }
+
+      .cls-3 {
+        isolation: isolate;
+      }
+    </style>
+    <filter id="outer-glow-5" x="0" y="0" width="902.74" height="712.07" filterUnits="userSpaceOnUse">
+      <feOffset dx="0" dy="0"/>
+      <feGaussianBlur result="blur" stdDeviation="5"/>
+      <feFlood flood-color="#edff00" flood-opacity=".75"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-3">
+    <g id="Capa_2" data-name="Capa 2">
+      <g class="cls-2">
+        <path class="cls-1" d="M886.77,59.08s-199.75,54-280.07,172.57c-80.32,118.57-142.62,211.3-311.62,280.57C126.08,581.47,49.77,582.87.47,711.89"/>
+      </g>
+    </g>
+  </g>
+</svg>
