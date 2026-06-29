@@ -267,192 +267,46 @@
       </p>
     </div>
 
-    <!-- Lista de cards -->
-    <div class="programs__list">
+    <!-- Card de programa -->
+    <div class="program-card">
 
-      <!-- Card 01 -->
-      <div class="program-card">
-        <span class="program-card__index">01</span>
-        <div class="program-card__top">
-          <h3 class="program-card__title">Optimización<br>de delta</h3>
-          <span class="program-card__badge">Disponible</span>
-        </div>
-        <ul class="program-card__tags">
-          <li class="program-card__tag">Análisis de sectores</li>
-          <li class="program-card__tag">Comparación de referencia</li>
-          <li class="program-card__tag">Técnica de conducción</li>
-          <li class="program-card__tag">Plan de mejora</li>
-        </ul>
-        <p class="program-card__desc">
-          Convertimos tus vueltas en información. Detectamos dónde perdés tiempo
-          y diseñamos una estrategia para reducir tu delta vuelta a vuelta.
-        </p>
-        <div class="program-card__actions">
-          <a href="#ingreso" class="btn btn--blue">
-            Reserva tu lugar
-            <img class="btn__icon" src="assets/flecha1.svg" alt="">
-          </a>
-          <a href="#" class="btn btn--outline-white">
-            Ver programa
-            <img class="btn__icon" src="assets/flecha1.svg" alt="">
-          </a>
-        </div>
+      <!-- Número de índice — arriba a la derecha -->
+      <span class="program-card__index">01</span>
+
+      <!-- Bloque superior: título + badge -->
+      <div class="program-card__top">
+        <h3 class="program-card__title">Optimización<br>de delta</h3>
+        <span class="program-card__badge">Disponible</span>
       </div>
 
-      <!-- Card 02 -->
-      <div class="program-card">
-        <span class="program-card__index">02</span>
-        <div class="program-card__top">
-          <h3 class="program-card__title">Programa<br>de desarrollo</h3>
-          <span class="program-card__badge condicional">Condicional</span>
-        </div>
-        <ul class="program-card__tags">
-          <li class="program-card__tag">Vueltas consistentes</li>
-          <li class="program-card__tag">Adaptación a circuitos</li>
-          <li class="program-card__tag">Ajuste de setup</li>
-          <li class="program-card__tag">Lectura de telemetría</li>
-        </ul>
-        <p class="program-card__desc">
-          La velocidad es solo una parte del piloto. Antes de llegar a la pista real, evaluamos tu capacidad para repetir, adaptarte y evolucionar.
-        </p>
-        <div class="program-card__actions">
-          <a href="#rendimiento" class="btn btn--blue">
-            Validar mi rendimiento
-            <img class="btn__icon" src="assets/flecha1.svg" alt="">
-          </a>
-          <a href="#" class="btn btn--outline-white">
-            Ver programa
-            <img class="btn__icon" src="assets/flecha1.svg" alt="">
-          </a>
-        </div>
-      </div>
+      <!-- Tags de características -->
+      <ul class="program-card__tags">
+        <li class="program-card__tag">Análisis de sectores</li>
+        <li class="program-card__tag">Comparación de referencia</li>
+        <li class="program-card__tag">Técnica de conducción</li>
+        <li class="program-card__tag">Plan de mejora</li>
+      </ul>
 
-      <!-- Card 03 -->
-      <div class="program-card">
-        <span class="program-card__index">03</span>
-        <div class="program-card__top">
-          <h3 class="program-card__title">Test<br>F3 real</h3>
-          <span class="program-card__badge proximamente">Próximamente</span>
-        </div>
-        <ul class="program-card__tags">
-          <li class="program-card__tag">Circuito real</li>
-          <li class="program-card__tag">Monoplaza F3</li>
-          <li class="program-card__tag">Evaluación técnica</li>
-          <li class="program-card__tag">Selección de pilotos</li>
-        </ul>
-        <p class="program-card__desc">
-          El paso final: Demostrar tu rendimiento en la pista física, en un entorno real, sometido a los desafíos que conllevan un circuito de verdad.
-        </p>
-        <div class="program-card__actions bloq">
-          <a href="#reserva" class="btn btn--blue prox">
-            Proximamente
-          </a>
-        </div>
-      </div>
-
-    </div><!-- /programs__list -->
-    
-  </div>
-</section>
-
-<!-- ===== VALIDACIÓN — "¿Estás en el rango para 2027?" ===== -->
-<section class="validation" id="rendimiento">
-  <div class="validation__inner">
-
-    <!-- Encabezado -->
-    <div class="validation__header">
-      <h2 class="validation__title">
-        ¿Estás en el rango para <span class="validation__title--highlight">2027</span>?
-      </h2>
-      <p class="validation__subtitle">
-        Ingresá tus datos para validar tu rendimiento y calcular tu probabilidad de preselección
+      <!-- Descripción -->
+      <p class="program-card__desc">
+        Convertimos tus vueltas en información. Detectamos dónde perdés tiempo
+        y diseñamos una estrategia para reducir tu delta vuelta a vuelta.
       </p>
-    </div>
 
-    <!-- Formulario -->
-    <div class="validation__form">
-
-      <!-- Fila 1: Nombre + Plataforma -->
-      <div class="form-group">
-        <label class="form-label" for="nombre">Nombre*</label>
-        <input
-          class="form-input"
-          type="text"
-          id="nombre"
-          name="nombre"
-          placeholder="Nombre y apellido"
-          autocomplete="name"
-        >
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="plataforma">Plataforma*</label>
-        <div class="form-select-wrapper">
-          <select class="form-input form-select" id="plataforma" name="plataforma">
-            <option value="" disabled selected></option>
-            <option value="iracing">iRacing</option>
-            <option value="acc">Assetto Corsa Competizione</option>
-            <option value="ac">Assetto Corsa</option>
-            <option value="rf2">rFactor 2</option>
-            <option value="gt7">Gran Turismo 7</option>
-            <option value="otro">Otro</option>
-          </select>
-          <span class="form-select-arrow" aria-hidden="true">&#8964;</span>
-        </div>
-      </div>
-
-      <!-- Fila 2: Email + iRating -->
-      <div class="form-group">
-        <label class="form-label" for="email">Email*</label>
-        <input
-          class="form-input"
-          type="email"
-          id="email"
-          name="email"
-          placeholder="email@mail.com"
-          autocomplete="email"
-        >
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="irating">iRating/SR</label>
-        <input
-          class="form-input"
-          type="text"
-          id="irating"
-          name="irating"
-          placeholder="Ej. 4200"
-        >
-      </div>
-
-      <!-- Fila 3: Adjuntar vuelta x2 -->
-      <div class="form-group">
-        <label class="form-label">Adjuntá tu vuelta*</label>
-        <label class="form-upload" for="vuelta1">
-          <input type="file" id="vuelta1" name="vuelta1" class="form-upload__input" accept="video/*,.csv,.ibt">
-          <span class="form-upload__icon" aria-hidden="true">+</span>
-          <span class="form-upload__text">Añadir archivos</span>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Adjuntá tu vuelta*</label>
-        <label class="form-upload" for="vuelta2">
-          <input type="file" id="vuelta2" name="vuelta2" class="form-upload__input" accept="video/*,.csv,.ibt">
-          <span class="form-upload__icon" aria-hidden="true">+</span>
-          <span class="form-upload__text">Añadir archivos</span>
-        </label>
-      </div>
-
-      <!-- Botón enviar — ocupa columna izquierda -->
-      <div class="form-group form-group--submit">
-        <button type="button" class="btn btn--blue">
-          Validar mi rendimiento
+      <!-- Botones -->
+      <div class="program-card__actions">
+        <a href="#reserva" class="btn btn--blue">
+          Reserva tu lugar
           <img class="btn__icon" src="assets/flecha1.svg" alt="">
-        </button>
+        </a>
+        <a href="#" class="btn btn--outline-white">
+          Ver programa
+          <img class="btn__icon" src="assets/flecha1.svg" alt="">
+        </a>
       </div>
 
     </div>
+    
   </div>
 </section>
   </main>

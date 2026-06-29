@@ -784,12 +784,6 @@ position: relative;
   width: 100%;
 }
 
-.programs__list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
 /* Encabezado: mismo patrón que .services__header */
 .programs__header {
   display: flex;
@@ -847,6 +841,7 @@ position: relative;
   font-size: clamp(2.2rem, 4.5vw, 3.5rem);
   color: var(--color-white);
   line-height: 1;
+  opacity: 0.9;
 }
 
 /* Bloque superior: título + badge apilados */
@@ -880,15 +875,6 @@ position: relative;
   text-transform: uppercase;
   padding: 0.4rem 0.75rem;
   border-radius: 6px;
-}
-
-.condicional {
-  background-color: #ffffff;
-}
-
-.proximamente {
-  background-color: #1e1e28;
-  color: #ffffff;
 }
 
 /* Tags de características */
@@ -929,10 +915,6 @@ position: relative;
   gap: 1rem;
 }
 
-.bloq {
-  display: flex;
-}
-
 /* Botón azul — exclusivo de esta sección */
 .btn--blue {
   background: var(--color-blue);
@@ -943,21 +925,10 @@ position: relative;
   font-size: clamp(0.85rem, 1.1vw, 1rem);
 }
 
-.prox {
-  cursor: not-allowed;
-  background-color: #1e1e28;
-}
-
 .btn--blue:hover {
   transform: scale(1.03);
   background: #1535e8;
 }
-
-.prox:hover {
-  transform: scale(1.03);
-  background: #1e1e28;
-}
-
 
 .btn--blue .btn__icon {
   filter: invert(1);
@@ -1007,204 +978,5 @@ position: relative;
 
   .program-card__actions {
     grid-template-columns: 1fr;
-  }
-}
-
-/* ===== VALIDACIÓN ===== */
-.validation {
-  background: var(--color-white);
-  padding: clamp(3rem, 7vw, 6rem) 0;
-  min-height: 100dvh;
-  display: flex;
-  align-items: center;
-}
-
-.validation__inner {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 clamp(1.25rem, 4vw, 3rem);
-  width: 100%;
-}
-
-/* Encabezado: mismo patrón que .programs__header */
-.validation__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-}
-
-.validation__title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  text-transform: uppercase;
-  line-height: 1.0;
-  color: var(--color-black);
-  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
-  flex: 0 1 auto;
-}
-
-/* "2027" con fondo lime */
-.validation__title--highlight {
-  background: var(--color-lime);
-  color: var(--color-black);
-
-  display: inline-block;
-}
-
-.validation__subtitle {
-  font-size: clamp(0.85rem, 1vw, 0.95rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  line-height: 1.45;
-  color: var(--color-light-text);
-  text-align: right;
-  max-width: 40ch;
-  flex: 0 1 auto;
-}
-
-/* ===== FORMULARIO ===== */
-.validation__form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.75rem clamp(1.5rem, 4vw, 3rem);
-}
-
-/* Label de campo */
-.form-label {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  color: var(--color-black);
-  margin-bottom: 0.6rem;
-}
-
-/* Input de texto / email */
-.form-input {
-  width: 100%;
-  background: #ebebf0;
-  border: 2px solid #000;
-  border-radius: 12px;
-  padding: 1.05rem 1.25rem;
-  font-family: var(--font-display);
-  font-size: 0.85rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  color: var(--color-black);
-  outline: none;
-  transition: border-color 0.18s ease;
-  appearance: none;
-  -webkit-appearance: none;
-}
-
-.form-input::placeholder {
-  color: rgba(0, 0, 0, 0.35);
-}
-
-.form-input:focus {
-  border-color: var(--color-blue);
-}
-
-/* Select: wrapper para custom arrow */
-.form-select-wrapper {
-  position: relative;
-}
-
-.form-select {
-  cursor: pointer;
-  padding-right: 3rem; /* espacio para la flecha */
-}
-
-.form-select-arrow {
-  position: absolute;
-  top: 50%;
-  right: 1.25rem;
-  transform: translateY(-50%);
-  font-size: 1.4rem;
-  color: var(--color-black);
-  pointer-events: none;
-  line-height: 1;
-}
-
-/* Área de upload */
-.form-upload {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  background: #ebebf0;
-  border: 2px solid var(--color-black);
-  border-radius: 12px;
-  padding: 2rem 1.25rem;
-  cursor: pointer;
-  transition: border-color 0.18s ease, background 0.18s ease;
-  min-height: 130px;
-}
-
-.form-upload:hover {
-  border-color: var(--color-blue);
-  background: #e3e6f5;
-}
-
-.form-upload__input {
-  display: none; /* oculto, el click lo dispara el label */
-}
-
-.form-upload__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: var(--color-blue);
-  color: var(--color-white);
-  font-size: 1.4rem;
-  font-weight: 300;
-  line-height: 1;
-}
-
-.form-upload__text {
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  color: var(--color-black);
-}
-
-/* Botón submit — solo columna izquierda */
-.form-group--submit {
-  grid-column: 1 / 2;
-}
-
-.form-group--submit .btn {
-  padding: 1.05rem 2rem;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 700px) {
-  .validation__header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .validation__subtitle {
-    text-align: left;
-    max-width: none;
-  }
-
-  .validation__form {
-    grid-template-columns: 1fr;
-  }
-
-  .form-group--submit {
-    grid-column: 1 / 2;
   }
 }
