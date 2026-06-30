@@ -388,8 +388,6 @@ position: relative;
   padding: clamp(1rem, 2.5vw, 1.75rem) 0;
   position: relative;
   z-index: 2; /* pasa por encima de la forma */
-  display: flex;
-  align-items: center;
 }
 
 /* Recorta el track para que solo se vea el ancho de la sección */
@@ -533,29 +531,24 @@ position: relative;
 }
 
 /* ===== FORMAMOS PILOTOS — grid de servicios ===== */
-/* .brands + .services suman 100dvh entre las dos */
 .services {
   background: var(--color-white);
-  padding: clamp(2rem, 5vw, 3.5rem) 0;
-  min-height: calc(100dvh - 100px); /* 100px ≈ alto aprox de .brands con su padding */
-  display: flex;
-  align-items: center;
+  padding: clamp(3rem, 7vw, 6rem) 0;
 }
 
 .services__inner {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 clamp(1.25rem, 4vw, 3rem);
-  width: 100%;
 }
 
-/* --- Encabezado: título arriba, bajada abajo (apilados a la izquierda) --- */
+/* --- Encabezado: título izq / bajada der --- */
 .services__header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 0.75rem;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
 .services__title {
@@ -565,14 +558,7 @@ position: relative;
   line-height: 0.95;
   color: var(--color-black);
   font-size: clamp(2.2rem, 4.5vw, 3.5rem);
-}
-
-/* "pilotos" con fondo lime, mismo patrón que otras secciones */
-.services__title--highlight {
-  background: var(--color-lime);
-  color: var(--color-black);
-  padding: 0 0.15em;
-  display: inline-block;
+  flex: 0 1 auto;
 }
 
 .services__subtitle {
@@ -581,8 +567,9 @@ position: relative;
   text-transform: uppercase;
   line-height: 1.45;
   color: var(--color-light-text);
-  text-align: left;
-  max-width: 55ch;
+  text-align: right;
+  max-width: 40ch;
+  flex: 0 1 auto;
 }
 
 /* --- Grid de tarjetas --- */
@@ -593,95 +580,16 @@ position: relative;
   list-style: none;
 }
 
-/* ===== FLIP CARD ===== */
-/* El <li> define el tamaño y el contexto de perspectiva 3D */
 .service-card {
-  border-radius: 16px;
-  perspective: 1200px;
-  aspect-ratio: 4 / 5;
-}
-
-/* .inner es lo que rota; sus dos hijos (front/back) quedan superpuestos */
-.service-card__inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
-  transform-style: preserve-3d;
-}
-
-.service-card:hover .service-card__inner {
-  transform: rotateY(180deg);
-}
-
-/* Ambas caras ocupan exactamente el mismo lugar, una encima de otra */
-.service-card__face {
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  overflow: hidden;
-}
-
-/* ----- CARA FRONTAL: foto + label inferior (estado default) ----- */
-.service-card__face--front {
-  border: 1.5px solid var(--color-lime);
-  display: flex;
-  align-items: flex-end;
-}
-
-.service-card__photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale();
-}
-
-.service-card__photo:hover {
-  filter: none;
-}
-
-.service-card__label {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
   background: var(--color-black);
   border: 1.5px solid var(--color-lime);
-  border-radius: 10px;
-  margin: 0.9rem;
-  padding: 0.85rem 1rem;
-  font-family: var(--font-body);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: clamp(0.78rem, 0.95vw, 0.88rem);
-  color: var(--color-white);
-}
-
-.service-card__label-icon {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-/* ----- CARA TRASERA: diseño original, rotada 180° de antemano ----- */
-.service-card__face--back {
-  background: var(--color-black);
-  border: 1.5px solid var(--color-lime);
-  transform: rotateY(180deg);
+  border-radius: 16px;
+  padding: clamp(2rem, 4vw, 2.75rem) clamp(1.25rem, 3vw, 2rem);
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
-  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 3vw, 2rem);
 }
 
 .service-card__icon {
@@ -689,6 +597,9 @@ position: relative;
   height: clamp(56px, 6vw, 72px);
   object-fit: contain;
   margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  /* Si tu SVG ya viene en verde lima, no necesitás filtros.
+     Si viniera en negro/otro color, podés forzarlo con: */
+  /* filter: brightness(0) saturate(100%) invert(78%) sepia(64%) saturate(900%) hue-rotate(50deg); */
 }
 
 .service-card__title {
@@ -712,45 +623,29 @@ position: relative;
 
 /* ===== RESPONSIVE ===== */
 
-/* Tablet: 2 columnas */
+/* Tablet: 2 columnas. La 6ta tarjeta queda sola en la última fila,
+   se mantiene alineada a la izquierda (comportamiento natural del grid) */
 @media (max-width: 1024px) {
   .services__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Mobile: una columna, sin flip (hover no existe en touch) */
+/* Mobile: encabezado se apila (título arriba, bajada abajo, ambos a la izquierda)
+   y las tarjetas pasan a una sola columna */
 @media (max-width: 700px) {
-  .services {
-    min-height: auto;
+  .services__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .services__subtitle {
+    text-align: left;
+    max-width: none;
   }
 
   .services__grid {
     grid-template-columns: 1fr;
-  }
-
-  .service-card {
-    aspect-ratio: auto;
-  }
-
-  .service-card__inner {
-    transition: none;
-  }
-
-  .service-card:hover .service-card__inner {
-    transform: none;
-  }
-
-  .service-card__face {
-    position: relative;
-  }
-
-  .service-card__face--back {
-    display: none; /* en mobile mostramos solo la cara frontal */
-  }
-
-  .service-card__face--front {
-    aspect-ratio: 4 / 5;
   }
 }
 
