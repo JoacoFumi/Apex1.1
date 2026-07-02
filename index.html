@@ -42,6 +42,28 @@
           Reservá tu lugar
           <img class="btn__icon" src="assets/flecha1.svg">
         </a>
+
+        <!-- Botón hamburguesa: solo visible en mobile -->
+        <div class="menu" data-menu>
+          <button class="btn btn--menu" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-panel" aria-label="Abrir menú de navegación" data-menu-trigger>
+            MENU
+            <span class="btn__dots" aria-hidden="true">
+              <span class="btn__dots-inner">
+                <span></span><span></span>
+              </span>
+            </span>
+          </button>
+
+          <nav class="menu__panel" id="menu-panel" data-menu-panel aria-label="Navegación principal">
+            <ul class="menu__list">
+              <li><a href="#inicio" class="menu__link">Inicio</a></li>
+              <li><a href="#nosotros" class="menu__link">Nosotros</a></li>
+              <li><a href="#cursos" class="menu__link">Cursos</a></li>
+              <li><a href="#simuladores" class="menu__link">Simulador</a></li>
+              <li><a href="#inscribite" class="menu__link">Inscribite</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
 
     </div>

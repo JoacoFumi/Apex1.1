@@ -5,6 +5,24 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ===== MENÚ HAMBURGUESA (mobile) =====
+  const menu = document.querySelector('[data-menu]');
+  if (menu) {
+    const trigger = menu.querySelector('[data-menu-trigger]');
+    const panel   = menu.querySelector('[data-menu-panel]');
+
+    const openMenu  = () => { menu.classList.add('is-open');    trigger.setAttribute('aria-expanded', 'true');  };
+    const closeMenu = () => { menu.classList.remove('is-open'); trigger.setAttribute('aria-expanded', 'false'); };
+    const toggleMenu = () => menu.classList.contains('is-open') ? closeMenu() : openMenu();
+
+    trigger.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
+
+    panel.querySelectorAll('.menu__link').forEach(link => link.addEventListener('click', closeMenu));
+
+    document.addEventListener('click',   (e) => { if (!menu.contains(e.target)) closeMenu(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  }
+
   // ===== FLIP CARDS =====
   document.querySelectorAll('.service-card').forEach(card => {
     card.addEventListener('click', () => {
