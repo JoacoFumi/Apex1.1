@@ -27,35 +27,21 @@
         <img class="logo-img" src="assets/logo-apex.png" alt="">
       </a>
 
+      <!-- Nav central — siempre visible -->
+      <nav class="header__nav" aria-label="Navegación principal">
+        <a href="#inicio" class="header__nav-link">Inicio</a>
+        <a href="#nosotros" class="header__nav-link">Nosotros</a>
+        <a href="#cursos" class="header__nav-link">Cursos</a>
+        <a href="#simuladores" class="header__nav-link">Simulador</a>
+        <a href="#inscribite" class="header__nav-link">Inscribite</a>
+      </nav>
+
       <!-- Acciones de header -->
       <div class="header__actions">
         <a href="#reserva" class="btn btn--primary btn--sm">
           Reservá tu lugar
           <img class="btn__icon" src="assets/flecha1.svg">
         </a>
-
-        <!-- Menú: wrapper relativo para poder posicionar el panel justo debajo del botón -->
-        <div class="menu" data-menu>
-          <button class="btn btn--menu" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-panel" aria-label="Abrir menú de navegación" data-menu-trigger>
-            MENU
-            <span class="btn__dots" aria-hidden="true">
-              <span class="btn__dots-inner">
-                <span></span><span></span>
-              </span>
-            </span>
-          </button>
-
-          <!-- Panel de navegación: oculto por defecto, se muestra con la clase .is-open -->
-          <nav class="menu__panel" id="menu-panel" data-menu-panel aria-label="Navegación principal">
-            <ul class="menu__list">
-              <li><a href="#inicio" class="menu__link">Inicio</a></li>
-              <li><a href="#data" class="menu__link">Data</a></li>
-              <li><a href="#cockpit" class="menu__link">Cockpit</a></li>
-              <li><a href="#ingreso" class="menu__link">Ingreso</a></li>
-              <li><a href="#pilotos" class="menu__link">Pilotos</a></li>
-            </ul>
-          </nav>
-        </div>
       </div>
 
     </div>
@@ -161,7 +147,7 @@
     </section>
 
     <!-- ===== FORMAMOS PILOTOS — grid de servicios ===== -->
-<section class="services" id="data">
+<section class="services" id="nosotros">
   <div class="services__inner">
 
     <!-- Encabezado: título arriba, bajada abajo (apilados) -->
@@ -242,9 +228,211 @@
 
   </div>
 </section>
+
+<!-- ===== PROGRAMAS — "Rumbo hacia la F3 física" ===== -->
+<section class="programs" id="cursos">
+  <div class="programs__inner">
+
+    <!-- Encabezado: título izq / bajada der (mismo patrón que .services) -->
+    <div class="programs__header">
+      <h2 class="programs__title">
+        Rumbo hacia la <span class="programs__title--accent">F3 física</span>
+      </h2>
+      <p class="programs__subtitle">
+        Cada piloto tiene un punto de partida. Nosotros medimos el camino hasta el siguiente nivel.
+      </p>
+    </div>
+
+    <!-- Carrusel de cards -->
+    <div class="carousel">
+
+      <!-- Flechas de navegación -->
+      <div class="carousel__controls">
+        <button class="carousel__btn carousel__btn--prev" aria-label="Anterior" data-carousel-prev>
+          <img src="assets/flecha1.svg" alt="">
+        </button>
+        <button class="carousel__btn carousel__btn--next" aria-label="Siguiente" data-carousel-next>
+          <img src="assets/flecha1.svg" alt="">
+        </button>
+      </div>
+
+      <!-- Track: contiene las cards y se mueve horizontalmente -->
+      <div class="carousel__viewport">
+        <div class="carousel__track" data-carousel-track>
+
+          <div class="program-card" data-carousel-item>
+            <span class="program-card__index">01</span>
+            <div class="program-card__top">
+              <h3 class="program-card__title">Optimización de delta</h3>
+              <span class="program-card__badge">Disponible</span>
+            </div>
+            <div class="program-card__bot">
+              <ul class="program-card__tags">
+                <li class="program-card__tag">Análisis de sectores</li>
+                <li class="program-card__tag">Comparación de referencia</li>
+                <li class="program-card__tag">Técnica de conducción</li>
+                <li class="program-card__tag">Plan de mejora</li>
+              </ul>
+              <p class="program-card__desc">
+                Convertimos tus vueltas en información. Detectamos dónde perdés tiempo
+                y diseñamos una estrategia para reducir tu delta vuelta a vuelta.
+              </p>
+              <div class="program-card__actions">
+                <a href="#ingreso" class="btn btn--blue">
+                  Reserva tu lugar
+                  <img class="btn__icon" src="assets/flecha1.svg" alt="">
+                </a>
+                <a href="#" class="btn btn--outline-white">
+                  Ver programa
+                  <img class="btn__icon" src="assets/flecha1.svg" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="program-card" data-carousel-item>
+            <span class="program-card__index">02</span>
+            <div class="program-card__top">
+              <h3 class="program-card__title">Programa de desarrollo</h3>
+              <span class="program-card__badge condicional">Condicional</span>
+            </div>
+            <div class="program-card__bot">
+              <ul class="program-card__tags">
+                <li class="program-card__tag">Vueltas consistentes</li>
+                <li class="program-card__tag">Adaptación a circuitos</li>
+                <li class="program-card__tag">Ajuste de setup</li>
+                <li class="program-card__tag">Lectura de telemetría</li>
+              </ul>
+              <p class="program-card__desc">
+                La velocidad es solo una parte del piloto. Antes de llegar a la pista real, evaluamos tu capacidad para repetir, adaptarte y evolucionar.
+              </p>
+              <div class="program-card__actions">
+                <a href="#rendimiento" class="btn btn--blue">
+                  Validar mi rendimiento
+                  <img class="btn__icon" src="assets/flecha1.svg" alt="">
+                </a>
+                <a href="#" class="btn btn--outline-white">
+                  Ver programa
+                  <img class="btn__icon" src="assets/flecha1.svg" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="program-card" data-carousel-item>
+            <span class="program-card__index">03</span>
+            <div class="program-card__top">
+              <h3 class="program-card__title">Test F3 real</h3>
+              <span class="program-card__badge proximamente">Próximamente</span>
+            </div>
+            <div class="program-card__bot">
+              <ul class="program-card__tags">
+                <li class="program-card__tag">Circuito real</li>
+                <li class="program-card__tag">Monoplaza F3</li>
+                <li class="program-card__tag">Evaluación técnica</li>
+                <li class="program-card__tag">Selección de pilotos</li>
+              </ul>
+              <p class="program-card__desc">
+                El paso final: Demostrar tu rendimiento en la pista física, en un entorno real, sometido a los desafíos que conllevan un circuito de verdad.
+              </p>
+              <div class="program-card__actions bloq">
+                <a href="#reserva" class="btn btn--blue prox">
+                  Próximamente
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /carousel__track -->
+      </div><!-- /carousel__viewport -->
+
+    </div><!-- /carousel -->
+    
+  </div>
+</section>
+
+<!-- ===== NUESTRO SIMULADOR ===== -->
+<section class="simulator" id="simuladores">
+  <div class="simulator__inner">
+
+    <!-- Título centrado -->
+    <div class="simulator__header">
+      <h2 class="simulator__title">
+        Nuestro <span class="simulator__title--highlight">simulador</span>
+      </h2>
+    </div>
+
+    <!-- Lista de componentes -->
+    <ul class="simulator__list">
+
+      <li class="sim-item" data-sim-video="assets/videos/chasis.mp4">
+        <div class="sim-item__info">
+          <h3 class="sim-item__name">Chasis</h3>
+          <p class="sim-item__spec">Personalización APEX exclusiva</p>
+        </div>
+        <a href="#" class="sim-item__arrow" aria-label="Ver chasis">
+          <img src="assets/flecha1.svg" alt="">
+        </a>
+      </li>
+
+      <li class="sim-item" data-sim-video="assets/videos/volante.mp4">
+        <div class="sim-item__info">
+          <h3 class="sim-item__name">Volante</h3>
+          <p class="sim-item__spec">Fanatec ClubSport Steering Wheel Formula V2.5</p>
+        </div>
+        <a href="#" class="sim-item__arrow" aria-label="Ver volante">
+          <img src="assets/flecha1.svg" alt="">
+        </a>
+      </li>
+
+      <li class="sim-item" data-sim-video="assets/videos/base-volante.mp4">
+        <div class="sim-item__info">
+          <h3 class="sim-item__name">Base de volante</h3>
+          <p class="sim-item__spec">Fanatec Podium DD2 (25NM Direct Drive)</p>
+        </div>
+        <a href="#" class="sim-item__arrow" aria-label="Ver base de volante">
+          <img src="assets/flecha1.svg" alt="">
+        </a>
+      </li>
+
+      <li class="sim-item" data-sim-video="assets/videos/pedales.mp4">
+        <div class="sim-item__info">
+          <h3 class="sim-item__name">Pedales</h3>
+          <p class="sim-item__spec">Heusinkveld Sim Pedals Ultimate+</p>
+        </div>
+        <a href="#" class="sim-item__arrow" aria-label="Ver pedales">
+          <img src="assets/flecha1.svg" alt="">
+        </a>
+      </li>
+
+      <li class="sim-item" data-sim-video="assets/videos/triple-monitor.mp4">
+        <div class="sim-item__info">
+          <h3 class="sim-item__name">Triple monitor</h3>
+          <p class="sim-item__spec">LG UltraGear 32" 165Hz Curved</p>
+        </div>
+        <a href="#" class="sim-item__arrow" aria-label="Ver triple monitor">
+          <img src="assets/flecha1.svg" alt="">
+        </a>
+      </li>
+
+      <li class="sim-item" data-sim-video="assets/videos/asiento.mp4">
+        <div class="sim-item__info">
+          <h3 class="sim-item__name">Asiento</h3>
+          <p class="sim-item__spec">Sparco Grid Q Evo Carbon FIA</p>
+        </div>
+        <a href="#" class="sim-item__arrow" aria-label="Ver asiento">
+          <img src="assets/flecha1.svg" alt="">
+        </a>
+      </li>
+
+    </ul>
+
+  </div>
+</section>
+
 <!-- ===== CTA — "La pista te está esperando" ===== -->
 <!-- Reemplazá el src de .cta__bg-img por tu imagen de fondo (fotografía del simulador/pista) -->
-<section class="cta" id="ingreso">
+<section class="cta" id="inscribite">
 
   <div class="cta__bg">
     <img class="cta__bg-img" src="assets/fondo2.png" alt="">
@@ -276,108 +464,6 @@
 
   </div>
 
-</section>
-
-<!-- ===== PROGRAMAS — "Rumbo hacia la F3 física" ===== -->
-<section class="programs" id="cockpit">
-  <div class="programs__inner">
-
-    <!-- Encabezado: título izq / bajada der (mismo patrón que .services) -->
-    <div class="programs__header">
-      <h2 class="programs__title">
-        Rumbo hacia la <span class="programs__title--accent">F3 física</span>
-      </h2>
-      <p class="programs__subtitle">
-        Cada piloto tiene un punto de partida. Nosotros medimos el camino hasta el siguiente nivel.
-      </p>
-    </div>
-
-    <!-- Lista de cards -->
-    <div class="programs__list">
-
-      <!-- Card 01 -->
-      <div class="program-card">
-        <span class="program-card__index">01</span>
-        <div class="program-card__top">
-          <h3 class="program-card__title">Optimización de delta</h3>
-          <span class="program-card__badge">Disponible</span>
-        </div>
-        <ul class="program-card__tags">
-          <li class="program-card__tag">Análisis de sectores</li>
-          <li class="program-card__tag">Comparación de referencia</li>
-          <li class="program-card__tag">Técnica de conducción</li>
-          <li class="program-card__tag">Plan de mejora</li>
-        </ul>
-        <p class="program-card__desc">
-          Convertimos tus vueltas en información. Detectamos dónde perdés tiempo
-          y diseñamos una estrategia para reducir tu delta vuelta a vuelta.
-        </p>
-        <div class="program-card__actions">
-          <a href="#ingreso" class="btn btn--blue">
-            Reserva tu lugar
-            <img class="btn__icon" src="assets/flecha1.svg" alt="">
-          </a>
-          <a href="#" class="btn btn--outline-white">
-            Ver programa
-            <img class="btn__icon" src="assets/flecha1.svg" alt="">
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 02 -->
-      <div class="program-card">
-        <span class="program-card__index">02</span>
-        <div class="program-card__top">
-          <h3 class="program-card__title">Programa de desarrollo</h3>
-          <span class="program-card__badge condicional">Condicional</span>
-        </div>
-        <ul class="program-card__tags">
-          <li class="program-card__tag">Vueltas consistentes</li>
-          <li class="program-card__tag">Adaptación a circuitos</li>
-          <li class="program-card__tag">Ajuste de setup</li>
-          <li class="program-card__tag">Lectura de telemetría</li>
-        </ul>
-        <p class="program-card__desc">
-          La velocidad es solo una parte del piloto. Antes de llegar a la pista real, evaluamos tu capacidad para repetir, adaptarte y evolucionar.
-        </p>
-        <div class="program-card__actions">
-          <a href="#rendimiento" class="btn btn--blue">
-            Validar mi rendimiento
-            <img class="btn__icon" src="assets/flecha1.svg" alt="">
-          </a>
-          <a href="#" class="btn btn--outline-white">
-            Ver programa
-            <img class="btn__icon" src="assets/flecha1.svg" alt="">
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 03 -->
-      <div class="program-card">
-        <span class="program-card__index">03</span>
-        <div class="program-card__top">
-          <h3 class="program-card__title">Test F3 real</h3>
-          <span class="program-card__badge proximamente">Próximamente</span>
-        </div>
-        <ul class="program-card__tags">
-          <li class="program-card__tag">Circuito real</li>
-          <li class="program-card__tag">Monoplaza F3</li>
-          <li class="program-card__tag">Evaluación técnica</li>
-          <li class="program-card__tag">Selección de pilotos</li>
-        </ul>
-        <p class="program-card__desc">
-          El paso final: Demostrar tu rendimiento en la pista física, en un entorno real, sometido a los desafíos que conllevan un circuito de verdad.
-        </p>
-        <div class="program-card__actions bloq">
-          <a href="#reserva" class="btn btn--blue prox">
-            Proximamente
-          </a>
-        </div>
-      </div>
-
-    </div><!-- /programs__list -->
-    
-  </div>
 </section>
 
 <!-- ===== TALENTO APEX — galería de fotos ===== -->
@@ -485,7 +571,7 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="irating">iRating/SR</label>
+        <label class="form-label" for="irating">iRating/SR*</label>
         <input
           class="form-input"
           type="text"
@@ -506,7 +592,7 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label">Adjuntá tu vuelta*</label>
+        <label class="form-label">Adjuntá tu vuelta</label>
         <label class="form-upload" for="vuelta2">
           <input type="file" id="vuelta2" name="vuelta2" class="form-upload__input" accept="video/*,.csv,.ibt">
           <span class="form-upload__icon" aria-hidden="true">+</span>
@@ -525,8 +611,68 @@
     </div>
   </div>
 </section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+
+  <div class="footer__bg">
+    <img src="assets/pista.jpg" alt="" class="footer__bg-img">
+  </div>
+
+  <!-- Panel negro redondeado encima de la imagen -->
+  <div class="footer__panel">
+    <div class="footer__panel-inner">
+
+      <!-- Fila superior: logo izq / redes der -->
+      <div class="footer__top">
+        <a href="#" class="logo" aria-label="APEX - Inicio">
+          <img class="logo-img" src="assets/logo-apex.png" alt="APEX">
+        </a>
+        <div class="footer__social">
+          <a href="#" class="footer__social-btn" aria-label="Instagram">
+            <img src="assets/icons/instagram.svg" alt="">
+          </a>
+          <a href="#" class="footer__social-btn" aria-label="Twitter / X">
+            <img src="assets/icons/twitter.svg" alt="">
+          </a>
+          <a href="#" class="footer__social-btn" aria-label="YouTube">
+            <img src="assets/icons/youtube.svg" alt="">
+          </a>
+        </div>
+      </div>
+
+      <!-- Contacto -->
+      <div class="footer__contact">
+        <p class="footer__contact-label">Contacto</p>
+        <a href="mailto:apex@gmail.com" class="footer__contact-item">apex@gmail.com</a>
+        <p class="footer__contact-item">P. Sherman, Calle Wallaby 42, Sidney</p>
+        <a href="tel:+5432165498" class="footer__contact-item">+54 321 654 987</a>
+      </div>
+
+      <!-- Fila inferior: tagline + copyright -->
+      <div class="footer__bottom">
+        <p class="footer__tagline">
+          Telemetría profesional. Coaching competitivo.<br>
+          preparación para el mundo real del autmovilismo
+        </p>
+        <div class="footer__copy">
+          <p>2026 Apex Inc.</p>
+          <p>Todos los derechos reservados</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</footer>
+
   </main>
 
   <script src="js/script.js"></script>
+
+  <!-- Cursor follower de video para la sección simulador -->
+  <div class="sim-preview" id="simPreview" aria-hidden="true">
+  <video class="sim-preview__video" muted loop playsinline></video>
+  </div>
 </body>
 </html>

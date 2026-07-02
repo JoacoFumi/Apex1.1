@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APEX — UI Library</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts.css">
+
+  <style>
+    /* =============================================
+       TOKENS — copiados 1:1 del styles.css del proyecto
+    ============================================= */
+    :root {
+      --color-black:       #0b0c0e;
+      --color-white:       #ffffff;
+      --color-lime:        #8bed02;
+      --color-blue:        #023ffc;
+      --color-light-text:  #0c1f35;
+      --color-border:      #15171a;
+      --color-menu-panel:  #dde6fb;
+
+      --font-display: 'Tusker', 'Arial Narrow', sans-serif;
+      --font-body:    'Montserrat', system-ui, sans-serif;
+
+      --container: 1200px;
+      --gap: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    /* =============================================
+       RESET MÍNIMO
+    ============================================= */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: #f2f2f0;
+      color: var(--color-black);
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* =============================================
+       LAYOUT DE LA BIBLIOTECA
+    ============================================= */
+    .lib-header {
+      background: var(--color-black);
+      color: var(--color-white);
+      padding: 3rem clamp(1.5rem, 5vw, 4rem);
+      border-bottom: 2px solid var(--color-lime);
+    }
+    .lib-header__label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-lime);
+      margin-bottom: 0.5rem;
+    }
+    .lib-header__title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      text-transform: uppercase;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .lib-header__sub {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Nav lateral sticky */
+    .lib-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      min-height: 100vh;
+      max-width: 100%;
+    }
+    .lib-nav {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--color-black);
+      padding: 2rem 1.25rem;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .lib-nav__section {
+      margin-bottom: 2rem;
+    }
+    .lib-nav__label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 0.5rem;
+      padding-left: 0.5rem;
+    }
+    .lib-nav a {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.55);
+      padding: 0.45rem 0.5rem;
+      border-radius: 6px;
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+    .lib-nav a:hover {
+      color: var(--color-lime);
+      background: rgba(139,237,2,0.07);
+    }
+
+    .lib-content {
+      padding: clamp(2rem, 4vw, 4rem) clamp(1.5rem, 4vw, 3.5rem);
+      max-width: 960px;
+    }
+
+    /* Sección individual */
+    .lib-section {
+      margin-bottom: 5rem;
+    }
+    .lib-section__title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.35);
+      margin-bottom: 0.4rem;
+    }
+    .lib-section__name {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      text-transform: uppercase;
+      color: var(--color-black);
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1.5px solid rgba(0,0,0,0.1);
+    }
+
+    /* Canvas de muestra */
+    .lib-canvas {
+      background: var(--color-white);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+    .lib-canvas--dark {
+      background: var(--color-black);
+    }
+    .lib-canvas--blue {
+      background: var(--color-blue);
+    }
+    .lib-canvas--grid {
+      background-image: radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    /* Token chip */
+    .token-tag {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      background: rgba(0,0,0,0.06);
+      color: rgba(0,0,0,0.5);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      margin-top: 0.35rem;
+    }
+    .token-tag--light {
+      background: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* =============================================
+       COLORES
+    ============================================= */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+    .color-swatch {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+    .color-swatch__block {
+      height: 90px;
+    }
+    .color-swatch__info {
+      background: var(--color-white);
+      padding: 0.65rem 0.75rem;
+    }
+    .color-swatch__name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-black);
+      margin-bottom: 0.2rem;
+    }
+    .color-swatch__hex {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: rgba(0,0,0,0.4);
+    }
+    .color-swatch__var {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: rgba(0,0,0,0.3);
+    }
+
+    /* =============================================
+       TIPOGRAFÍA — estilos del proyecto
+    ============================================= */
+    .type-row {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .type-row:last-child { border-bottom: none; }
+    .type-meta {
+      flex-shrink: 0;
+      text-align: right;
+    }
+    .type-meta__role {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(0,0,0,0.35);
+    }
+    .type-meta__spec {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: rgba(0,0,0,0.3);
+      margin-top: 0.2rem;
+    }
+
+    /* Estilos tipográficos reales del proyecto */
+    .t-hero-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.05;
+      font-size: clamp(3rem, 8vw, 6rem);
+      letter-spacing: -0.02em;
+    }
+    .t-hero-title--dark  { color: var(--color-black); }
+    .t-hero-title--blue  { color: var(--color-blue); }
+
+    .t-section-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.95;
+      font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+      color: var(--color-black);
+    }
+
+    .t-cta-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.06;
+      font-size: clamp(3rem, 8vw, 6rem);
+      color: var(--color-white);
+    }
+    .t-cta-title span { color: var(--color-lime); }
+
+    .t-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-black);
+    }
+
+    .t-subtitle {
+      font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+      font-weight: 600;
+      line-height: 1.2;
+      text-transform: uppercase;
+      color: var(--color-light-text);
+    }
+
+    .t-card-title {
+      font-family: var(--font-body);
+      font-weight: 600;
+      text-transform: uppercase;
+      line-height: 1.2;
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      color: var(--color-white);
+    }
+
+    .t-card-text {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      line-height: 1.4;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .t-menu-link {
+      font-family: var(--font-display);
+      font-weight: 400;
+      text-transform: uppercase;
+      font-size: 1.3rem;
+      letter-spacing: -0.01em;
+      color: var(--color-black);
+    }
+
+    .t-services-sub {
+      font-size: clamp(0.85rem, 1vw, 0.95rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.45;
+      color: var(--color-light-text);
+    }
+
+    /* =============================================
+       BOTONES — copiados exactos del proyecto
+    ============================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      line-height: 1;
+      font-family: var(--font-display);
+      font-weight: 400;
+      text-transform: uppercase;
+      padding: 0.85rem 1.4rem;
+      border-radius: 10px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+      white-space: nowrap;
+      font-size: 0.9rem;
+    }
+    .btn--primary { background: var(--color-lime); color: var(--color-black); }
+    .btn--primary:hover { transform: scale(1.06); background: #b3e600; }
+    .btn--outline { background: transparent; border-color: var(--color-black); color: var(--color-black); }
+    .btn--outline:hover { transform: scale(1.06); background: var(--color-black); color: var(--color-white); }
+    .btn--menu {
+      background: var(--color-black); color: var(--color-white);
+      font-size: 0.85rem;
+      padding: 0.7rem 2.8rem 0.7rem 1.1rem;
+      position: relative;
+    }
+    .btn--menu:hover { transform: scale(1.06); background: #1b1d20; }
+    .btn--outline-light { background: transparent; border-color: var(--color-white); color: var(--color-white); }
+    .btn--outline-light:hover { transform: scale(1.06); background: var(--color-white); color: var(--color-blue); }
+    .btn--sm { padding: 0.7rem 1.2rem; font-size: 0.8rem; }
+
+    .btn__dots {
+      position: absolute; top: 50%; right: 6px;
+      transform: translateY(-50%);
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--color-menu-panel);
+      border-radius: 3px; aspect-ratio: 1/1; height: calc(100% - 8px);
+    }
+    .btn__dots-inner {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 100%; height: 100%; gap: 4px;
+      transition: transform 0.25s ease;
+    }
+    .btn--menu:hover .btn__dots-inner { transform: rotate(90deg); }
+    .btn__dots-inner span {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--color-black); flex-shrink: 0;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    /* Label de botón en la biblioteca */
+    .btn-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .btn-item__label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(0,0,0,0.35);
+    }
+    .btn-item--light .btn-item__label {
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* =============================================
+       TARJETA DE SERVICIO — copiada exacta
+    ============================================= */
+    .service-card {
+      background: var(--color-black);
+      border: 1.5px solid var(--color-lime);
+      border-radius: 16px;
+      padding: clamp(2rem, 4vw, 2.75rem) clamp(1.25rem, 3vw, 2rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .service-card__icon {
+      width: 48px; height: 48px;
+      background: var(--color-lime);
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .service-card__icon svg { width: 24px; height: 24px; }
+    .service-card__title {
+      font-family: var(--font-body); font-weight: 600;
+      text-transform: uppercase; line-height: 1.2;
+      font-size: 1.05rem; color: var(--color-white); margin-bottom: 0.75rem;
+    }
+    .service-card__text {
+      font-size: 0.82rem; font-weight: 600; text-transform: uppercase;
+      line-height: 1.4; color: rgba(255,255,255,0.5); max-width: 26ch;
+    }
+
+    /* =============================================
+       PANEL DE MENÚ
+    ============================================= */
+    .menu__panel-demo {
+      background: var(--color-menu-panel);
+      border-radius: 18px;
+      padding: 1.5rem 1.75rem;
+      box-shadow: 0 18px 40px rgba(2, 16, 43, 0.18);
+      max-width: 260px;
+    }
+    .menu__list { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; }
+    .menu__link {
+      padding: 5px 10px 10px;
+      border-radius: 10px;
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 400;
+      text-transform: uppercase;
+      font-size: 1.3rem;
+      letter-spacing: -0.01em;
+      color: var(--color-black);
+      transition: background 0.3s ease;
+    }
+    .menu__link:hover { background: #ffffff; }
+
+    /* =============================================
+       RADIO / BORDER-RADIUS
+    ============================================= */
+    .radius-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: flex-end;
+    }
+    .radius-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .radius-block {
+      background: var(--color-black);
+      width: 80px; height: 80px;
+    }
+    .radius-item__label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: rgba(0,0,0,0.4);
+      text-align: center;
+    }
+
+    /* =============================================
+       ESPACIADO / SPACING
+    ============================================= */
+    .spacing-rows { display: flex; flex-direction: column; gap: 0.75rem; }
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .spacing-bar {
+      background: var(--color-lime);
+      height: 12px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .spacing-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: rgba(0,0,0,0.4);
+      white-space: nowrap;
+    }
+
+    /* =============================================
+       SOMBRAS / SHADOWS
+    ============================================= */
+    .shadow-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .shadow-item {
+      background: var(--color-white);
+      border-radius: 16px;
+      width: 140px; height: 100px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0.75rem;
+    }
+    .shadow-item__label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: rgba(0,0,0,0.35);
+    }
+
+    /* =============================================
+       OVERLAY / BLEND MODES
+    ============================================= */
+    .overlay-demo {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      height: 160px;
+      background: var(--color-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .overlay-demo__tint {
+      position: absolute; inset: 0;
+      background: var(--color-blue);
+      opacity: 0.78;
+    }
+    .overlay-demo__text {
+      position: relative; z-index: 1;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      color: var(--color-white);
+      text-align: center;
+    }
+    .overlay-demo__text span { color: var(--color-lime); }
+
+    /* =============================================
+       ANIMACIONES
+    ============================================= */
+    .anim-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .anim-item {
+      background: var(--color-white);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .anim-item__label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(0,0,0,0.35);
+    }
+    .anim-item__value {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: var(--color-black);
+    }
+    .anim-demo-btn {
+      margin-top: 0.5rem;
+      width: 80px; height: 36px;
+      border-radius: 8px;
+      background: var(--color-lime);
+      border: none; cursor: pointer;
+    }
+    .anim-demo-btn--scale { transition: transform 0.18s ease; }
+    .anim-demo-btn--scale:hover { transform: scale(1.06); }
+    .anim-demo-btn--fade { transition: opacity 0.3s ease; }
+    .anim-demo-btn--fade:hover { opacity: 0; }
+
+    /* Marquee demo */
+    .marquee-demo {
+      background: var(--color-black);
+      border-radius: 12px;
+      overflow: hidden;
+      padding: 1rem 0;
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 8s linear infinite;
+    }
+    .marquee-list {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      list-style: none;
+      padding: 0 1.5rem;
+    }
+    .marquee-list li {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.35);
+      white-space: nowrap;
+    }
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* =============================================
+       DIVIDER
+    ============================================= */
+    .lib-divider {
+      border: none;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      margin: 3rem 0;
+    }
+
+    /* =============================================
+       LOGO DEMO
+    ============================================= */
+    .logo-demo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--color-white);
+    }
+
+    /* responsive: ocultar nav lateral en mobile */
+    @media (max-width: 700px) {
+      .lib-layout { grid-template-columns: 1fr; }
+      .lib-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <div class="lib-header">
+    <p class="lib-header__label">Design System</p>
+    <h1 class="lib-header__title">APEX</h1>
+    <p class="lib-header__sub">UI Library — Tokens, componentes y estilos del proyecto</p>
+  </div>
+
+  <div class="lib-layout">
+
+    <!-- ===== NAV LATERAL ===== -->
+    <nav class="lib-nav">
+      <div class="lib-nav__section">
+        <p class="lib-nav__label">Fundamentos</p>
+        <a href="#colores">Colores</a>
+        <a href="#tipografia">Tipografía</a>
+        <a href="#espaciado">Espaciado</a>
+        <a href="#bordes">Bordes & radios</a>
+        <a href="#sombras">Sombras</a>
+      </div>
+      <div class="lib-nav__section">
+        <p class="lib-nav__label">Componentes</p>
+        <a href="#botones">Botones</a>
+        <a href="#menu">Menú nav</a>
+        <a href="#cards">Service cards</a>
+        <a href="#overlays">Overlays</a>
+        <a href="#marquee">Marquee</a>
+      </div>
+      <div class="lib-nav__section">
+        <p class="lib-nav__label">Motion</p>
+        <a href="#animaciones">Animaciones</a>
+      </div>
+    </nav>
+
+    <!-- ===== CONTENIDO ===== -->
+    <main class="lib-content">
+
+      <!-- ===== COLORES ===== -->
+      <section class="lib-section" id="colores">
+        <p class="lib-section__title">Fundamentos</p>
+        <h2 class="lib-section__name">Colores</h2>
+
+        <div class="color-grid">
+
+          <div class="color-swatch">
+            <div class="color-swatch__block" style="background:#0b0c0e;"></div>
+            <div class="color-swatch__info">
+              <p class="color-swatch__name">Black</p>
+              <p class="color-swatch__hex">#0B0C0E</p>
+              <p class="color-swatch__var">--color-black</p>
+            </div>
+          </div>
+
+          <div class="color-swatch">
+            <div class="color-swatch__block" style="background:#ffffff; border-bottom:1px solid #eee;"></div>
+            <div class="color-swatch__info">
+              <p class="color-swatch__name">White</p>
+              <p class="color-swatch__hex">#FFFFFF</p>
+              <p class="color-swatch__var">--color-white</p>
+            </div>
+          </div>
+
+          <div class="color-swatch">
+            <div class="color-swatch__block" style="background:#8bed02;"></div>
+            <div class="color-swatch__info">
+              <p class="color-swatch__name">Lime</p>
+              <p class="color-swatch__hex">#8BED02</p>
+              <p class="color-swatch__var">--color-lime</p>
+            </div>
+          </div>
+
+          <div class="color-swatch">
+            <div class="color-swatch__block" style="background:#023ffc;"></div>
+            <div class="color-swatch__info">
+              <p class="color-swatch__name">Blue</p>
+              <p class="color-swatch__hex">#023FFC</p>
+              <p class="color-swatch__var">--color-blue</p>
+            </div>
+          </div>
+
+          <div class="color-swatch">
+            <div class="color-swatch__block" style="background:#0c1f35;"></div>
+            <div class="color-swatch__info">
+              <p class="color-swatch__name">Light Text</p>
+              <p class="color-swatch__hex">#0C1F35</p>
+              <p class="color-swatch__var">--color-light-text</p>
+            </div>
+          </div>
+
+          <div class="color-swatch">
+            <div class="color-swatch__block" style="background:#dde6fb;"></div>
+            <div class="color-swatch__info">
+              <p class="color-swatch__name">Menu Panel</p>
+              <p class="color-swatch__hex">#DDE6FB</p>
+              <p class="color-swatch__var">--color-menu-panel</p>
+            </div>
+          </div>
+
+          <div class="color-swatch">
+            <div class="color-swatch__block" style="background:#15171a;"></div>
+            <div class="color-swatch__info">
+              <p class="color-swatch__name">Border</p>
+              <p class="color-swatch__hex">#15171A</p>
+              <p class="color-swatch__var">--color-border</p>
+            </div>
+          </div>
+
+          <div class="color-swatch">
+            <div class="color-swatch__block" style="background:#b3e600;"></div>
+            <div class="color-swatch__info">
+              <p class="color-swatch__name">Lime Hover</p>
+              <p class="color-swatch__hex">#B3E600</p>
+              <p class="color-swatch__var">btn--primary:hover</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Uso en contexto -->
+        <div style="margin-top: 1.5rem;">
+          <div class="lib-canvas lib-canvas--dark" style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+            <span style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.3);">Sobre fondo negro →</span>
+            <span style="color:var(--color-white); font-weight:700; font-size:0.9rem;">White</span>
+            <span style="color:var(--color-lime); font-weight:700; font-size:0.9rem;">Lime</span>
+            <span style="color:rgba(255,255,255,0.6); font-weight:600; font-size:0.85rem;">60% White</span>
+          </div>
+          <div class="lib-canvas lib-canvas--blue" style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center; margin-top:0.75rem;">
+            <span style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.3);">Sobre fondo azul →</span>
+            <span style="color:var(--color-white); font-weight:700; font-size:0.9rem;">White</span>
+            <span style="color:var(--color-lime); font-weight:700; font-size:0.9rem;">Lime</span>
+            <span style="color:rgba(223,237,255,0.85); font-weight:600; font-size:0.85rem;">Muted text</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== TIPOGRAFÍA ===== -->
+      <section class="lib-section" id="tipografia">
+        <p class="lib-section__title">Fundamentos</p>
+        <h2 class="lib-section__name">Tipografía</h2>
+
+        <!-- Familias -->
+        <div class="lib-canvas" style="margin-bottom:1rem;">
+          <div style="display:flex; gap:2rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+            <div>
+              <p style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(0,0,0,0.35); margin-bottom:0.4rem;">Display / Titulares</p>
+              <p style="font-family:var(--font-display); font-size:2rem; font-weight:900; text-transform:uppercase; letter-spacing:-0.02em;">Montserrat</p>
+              <p style="font-size:0.7rem; color:rgba(0,0,0,0.4); margin-top:0.2rem;">--font-display</p>
+            </div>
+            <div>
+              <p style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(0,0,0,0.35); margin-bottom:0.4rem;">Body / Texto</p>
+              <p style="font-family:var(--font-body); font-size:2rem; font-weight:400;">Montserrat</p>
+              <p style="font-size:0.7rem; color:rgba(0,0,0,0.4); margin-top:0.2rem;">--font-body</p>
+            </div>
+          </div>
+          <!-- Pesos disponibles -->
+          <div style="display:flex; gap:1.5rem; flex-wrap:wrap; align-items:baseline; padding-top:1.25rem; border-top:1px solid rgba(0,0,0,0.07);">
+            <span style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(0,0,0,0.35);">Pesos usados →</span>
+            <span style="font-family:var(--font-display); font-weight:300; font-size:1.1rem;">Light 300</span>
+            <span style="font-family:var(--font-display); font-weight:400; font-size:1.1rem;">Regular 400</span>
+            <span style="font-family:var(--font-display); font-weight:600; font-size:1.1rem;">SemiBold 600</span>
+            <span style="font-family:var(--font-display); font-weight:700; font-size:1.1rem;">Bold 700</span>
+            <span style="font-family:var(--font-display); font-weight:900; font-size:1.1rem;">Black 900</span>
+          </div>
+        </div>
+
+        <!-- Escala tipográfica -->
+        <div class="lib-canvas">
+
+          <div class="type-row">
+            <div>
+              <p class="t-hero-title t-hero-title--dark">No es un juego.</p>
+              <p class="t-hero-title t-hero-title--blue">Es tu futuro.</p>
+            </div>
+            <div class="type-meta">
+              <p class="type-meta__role">Hero Title</p>
+              <p class="type-meta__spec">clamp(3rem, 8vw, 6rem)<br>weight: 900 / uppercase<br>line-height: 1.05</p>
+            </div>
+          </div>
+
+          <div class="type-row">
+            <p class="t-section-title">Formamos pilotos</p>
+            <div class="type-meta">
+              <p class="type-meta__role">Section Title</p>
+              <p class="type-meta__spec">clamp(2.2rem, 4.5vw, 3.5rem)<br>weight: 900 / uppercase<br>line-height: 0.95</p>
+            </div>
+          </div>
+
+          <div class="type-row">
+            <p class="t-eyebrow">Entrenamiento de élite para pilotos virtuales</p>
+            <div class="type-meta">
+              <p class="type-meta__role">Eyebrow</p>
+              <p class="type-meta__spec">0.8rem / weight: 300<br>uppercase / tracking +0.06em</p>
+            </div>
+          </div>
+
+          <div class="type-row">
+            <p class="t-subtitle">Telemetría profesional. Coaching competitivo.<br>Preparación para el mundo real.</p>
+            <div class="type-meta">
+              <p class="type-meta__role">Subtitle / Hero Sub</p>
+              <p class="type-meta__spec">clamp(0.95rem, 1.1vw, 1.05rem)<br>weight: 600 / uppercase<br>line-height: 1.2</p>
+            </div>
+          </div>
+
+          <div class="type-row">
+            <p class="t-menu-link">Inicio</p>
+            <div class="type-meta">
+              <p class="type-meta__role">Menu Link</p>
+              <p class="type-meta__spec">1.3rem / weight: 400<br>uppercase / tracking -0.01em</p>
+            </div>
+          </div>
+
+          <div class="type-row" style="background:var(--color-black); border-radius:10px; padding:1.25rem; margin-top:0.5rem; border-bottom:none;">
+            <div>
+              <p class="t-card-title">Coaching estilo academia</p>
+              <p class="t-card-text" style="margin-top:0.4rem;">Feedback 1:1 basado en datos reales</p>
+            </div>
+            <div class="type-meta">
+              <p class="type-meta__role" style="color:rgba(255,255,255,0.35);">Card Title / Text</p>
+              <p class="type-meta__spec" style="color:rgba(255,255,255,0.25);">1.05rem w:600 / 0.85rem w:600<br>uppercase / white & 50% white</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===== ESPACIADO ===== -->
+      <section class="lib-section" id="espaciado">
+        <p class="lib-section__title">Fundamentos</p>
+        <h2 class="lib-section__name">Espaciado</h2>
+        <div class="lib-canvas">
+          <div class="spacing-rows">
+            <div class="spacing-row">
+              <div class="spacing-bar" style="width:4px;"></div>
+              <span class="spacing-label">4px — gap entre círculos del botón MENU</span>
+            </div>
+            <div class="spacing-row">
+              <div class="spacing-bar" style="width:8px;"></div>
+              <span class="spacing-label">8px — padding interno btn__dots</span>
+            </div>
+            <div class="spacing-row">
+              <div class="spacing-bar" style="width:12px;"></div>
+              <span class="spacing-label">0.75rem — gap entre botones del header</span>
+            </div>
+            <div class="spacing-row">
+              <div class="spacing-bar" style="width:16px;"></div>
+              <span class="spacing-label">1rem — gap entre CTAs del hero</span>
+            </div>
+            <div class="spacing-row">
+              <div class="spacing-bar" style="width:32px;"></div>
+              <span class="spacing-label">2rem — margin-bottom del hero title</span>
+            </div>
+            <div class="spacing-row">
+              <div class="spacing-bar" style="width:48px;"></div>
+              <span class="spacing-label">clamp(1.5rem, 4vw, 3rem) — --gap</span>
+            </div>
+            <div class="spacing-row">
+              <div class="spacing-bar" style="width:90px;"></div>
+              <span class="spacing-label">90px — padding-top hero (compensa header fixed)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== BORDES & RADIOS ===== -->
+      <section class="lib-section" id="bordes">
+        <p class="lib-section__title">Fundamentos</p>
+        <h2 class="lib-section__name">Bordes & radios</h2>
+        <div class="lib-canvas">
+          <div class="radius-grid">
+            <div class="radius-item">
+              <div class="radius-block" style="border-radius:3px;"></div>
+              <span class="radius-item__label">3px<br>btn__dots</span>
+            </div>
+            <div class="radius-item">
+              <div class="radius-block" style="border-radius:6px;"></div>
+              <span class="radius-item__label">6px<br>nav link hover</span>
+            </div>
+            <div class="radius-item">
+              <div class="radius-block" style="border-radius:10px;"></div>
+              <span class="radius-item__label">10px<br>.btn / menu link</span>
+            </div>
+            <div class="radius-item">
+              <div class="radius-block" style="border-radius:16px;"></div>
+              <span class="radius-item__label">16px<br>.service-card</span>
+            </div>
+            <div class="radius-item">
+              <div class="radius-block" style="border-radius:18px;"></div>
+              <span class="radius-item__label">18px<br>.menu__panel</span>
+            </div>
+          </div>
+
+          <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(0,0,0,0.07);">
+            <p style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(0,0,0,0.35); margin-bottom:0.75rem;">Bordes usados</p>
+            <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center;">
+              <div style="width:120px; height:40px; border:2px solid transparent; border-radius:10px; background:var(--color-lime); display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:700; color:var(--color-black);">2px transparent</div>
+              <div style="width:120px; height:40px; border:2px solid var(--color-black); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:700;">2px black</div>
+              <div style="width:120px; height:40px; border:2px solid var(--color-white); border-radius:10px; background:var(--color-blue); display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:700; color:white;">2px white</div>
+              <div style="width:120px; height:40px; border:1.5px solid var(--color-lime); border-radius:10px; background:var(--color-black); display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:700; color:white;">1.5px lime</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SOMBRAS ===== -->
+      <section class="lib-section" id="sombras">
+        <p class="lib-section__title">Fundamentos</p>
+        <h2 class="lib-section__name">Sombras</h2>
+        <div class="lib-canvas lib-canvas--grid">
+          <div class="shadow-grid">
+            <div class="shadow-item" style="box-shadow: 0 18px 40px rgba(2,16,43,0.18);">
+              <span class="shadow-item__label">menu panel<br>0 18 40 / 18%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== BOTONES ===== -->
+      <section class="lib-section" id="botones">
+        <p class="lib-section__title">Componentes</p>
+        <h2 class="lib-section__name">Botones</h2>
+
+        <!-- Sobre blanco -->
+        <div class="lib-canvas">
+          <p style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(0,0,0,0.35); margin-bottom:1.25rem;">Sobre fondo blanco</p>
+          <div class="btn-row">
+            <div class="btn-item">
+              <span class="btn-item__label">Primary</span>
+              <button class="btn btn--primary">
+                Comenzá tu entrenamiento
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="btn-item">
+              <span class="btn-item__label">Primary SM</span>
+              <button class="btn btn--primary btn--sm">
+                Reservá tu lugar
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="btn-item">
+              <span class="btn-item__label">Outline</span>
+              <button class="btn btn--outline">
+                Ver el simulador
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="btn-item">
+              <span class="btn-item__label">Menu</span>
+              <button class="btn btn--menu">
+                MENU
+                <span class="btn__dots">
+                  <span class="btn__dots-inner">
+                    <span></span><span></span>
+                  </span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sobre azul -->
+        <div class="lib-canvas lib-canvas--blue" style="margin-top:0.75rem;">
+          <p style="font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.35); margin-bottom:1.25rem;">Sobre fondo azul</p>
+          <div class="btn-row">
+            <div class="btn-item btn-item--light">
+              <span class="btn-item__label">Primary</span>
+              <button class="btn btn--primary">
+                Reserva tu lugar
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="btn-item btn-item--light">
+              <span class="btn-item__label">Outline Light</span>
+              <button class="btn btn--outline-light">
+                Seguir viendo
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Especificaciones -->
+        <div class="lib-canvas" style="margin-top:0.75rem; font-family:'Courier New',monospace; font-size:0.72rem; line-height:1.7; color:rgba(0,0,0,0.5);">
+          <p><strong style="color:var(--color-black);">.btn</strong> — padding: 0.85rem 1.4rem · border-radius: 10px · border: 2px solid transparent</p>
+          <p><strong style="color:var(--color-black);">.btn--sm</strong> — padding: 0.7rem 1.2rem · font-size: 0.8rem</p>
+          <p><strong style="color:var(--color-black);">transition</strong> — transform 0.18s ease, background-color 0.18s ease, color 0.18s ease</p>
+          <p><strong style="color:var(--color-black);">hover</strong> — transform: scale(1.06)</p>
+        </div>
+      </section>
+
+      <!-- ===== MENÚ ===== -->
+      <section class="lib-section" id="menu">
+        <p class="lib-section__title">Componentes</p>
+        <h2 class="lib-section__name">Menú nav</h2>
+        <div class="lib-canvas lib-canvas--grid">
+          <div class="menu__panel-demo">
+            <ul class="menu__list">
+              <li><a href="#" class="menu__link">Inicio</a></li>
+              <li><a href="#" class="menu__link">Data</a></li>
+              <li><a href="#" class="menu__link">Cockpit</a></li>
+              <li><a href="#" class="menu__link">Ingreso</a></li>
+              <li><a href="#" class="menu__link">Pilotos</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="lib-canvas" style="margin-top:0.75rem; font-family:'Courier New',monospace; font-size:0.72rem; line-height:1.7; color:rgba(0,0,0,0.5);">
+          <p><strong style="color:var(--color-black);">background</strong> — #DDE6FB (--color-menu-panel)</p>
+          <p><strong style="color:var(--color-black);">border-radius</strong> — 18px</p>
+          <p><strong style="color:var(--color-black);">box-shadow</strong> — 0 18px 40px rgba(2,16,43,0.18)</p>
+          <p><strong style="color:var(--color-black);">link hover</strong> — background: #ffffff</p>
+          <p><strong style="color:var(--color-black);">panel transition</strong> — opacity + translateY(-8px) / 0.2s ease</p>
+        </div>
+      </section>
+
+      <!-- ===== SERVICE CARDS ===== -->
+      <section class="lib-section" id="cards">
+        <p class="lib-section__title">Componentes</p>
+        <h2 class="lib-section__name">Service cards</h2>
+        <div class="lib-canvas lib-canvas--dark" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap:1rem;">
+          <div class="service-card">
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-black)" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 4-4"/></svg>
+            </div>
+            <h3 class="service-card__title">Análisis de<br>telemetría real</h3>
+            <p class="service-card__text">Comparación de trazadas, frenado, throttle maps</p>
+          </div>
+          <div class="service-card">
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-black)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0112 0v2"/></svg>
+            </div>
+            <h3 class="service-card__title">Coaching<br>estilo academia</h3>
+            <p class="service-card__text">Feedback 1:1 basado en datos reales</p>
+          </div>
+          <div class="service-card">
+            <div class="service-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-black)" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><circle cx="17.5" cy="17.5" r="3.5"/></svg>
+            </div>
+            <h3 class="service-card__title">Setup<br>engineering</h3>
+            <p class="service-card__text">Entendé el setup como un ingeniero</p>
+          </div>
+        </div>
+        <div class="lib-canvas" style="margin-top:0.75rem; font-family:'Courier New',monospace; font-size:0.72rem; line-height:1.7; color:rgba(0,0,0,0.5);">
+          <p><strong style="color:var(--color-black);">background</strong> — var(--color-black)</p>
+          <p><strong style="color:var(--color-black);">border</strong> — 1.5px solid var(--color-lime)</p>
+          <p><strong style="color:var(--color-black);">border-radius</strong> — 16px</p>
+          <p><strong style="color:var(--color-black);">icon size</strong> — clamp(56px, 6vw, 72px)</p>
+        </div>
+      </section>
+
+      <!-- ===== OVERLAYS ===== -->
+      <section class="lib-section" id="overlays">
+        <p class="lib-section__title">Componentes</p>
+        <h2 class="lib-section__name">Overlays CTA</h2>
+        <div class="overlay-demo">
+          <div class="overlay-demo__tint"></div>
+          <div class="overlay-demo__text">
+            La pista te<br><span>está esperando</span>
+          </div>
+        </div>
+        <div class="lib-canvas" style="margin-top:0.75rem; font-family:'Courier New',monospace; font-size:0.72rem; line-height:1.7; color:rgba(0,0,0,0.5);">
+          <p><strong style="color:var(--color-black);">overlay</strong> — background: var(--color-blue) · opacity: 0.78</p>
+          <p><strong style="color:var(--color-black);">isolation</strong> — isolate (evita que el overlay afecte elementos externos)</p>
+          <p><strong style="color:var(--color-black);">texto muted</strong> — rgba(223, 237, 255, 0.85)</p>
+        </div>
+      </section>
+
+      <!-- ===== MARQUEE ===== -->
+      <section class="lib-section" id="marquee">
+        <p class="lib-section__title">Componentes</p>
+        <h2 class="lib-section__name">Marquee de marcas</h2>
+        <div class="marquee-demo">
+          <div class="marquee-track">
+            <ul class="marquee-list">
+              <li>Razer</li><li>iRacing</li><li>Corsair</li>
+              <li>Fanatec</li><li>Logitech G</li><li>Moza Racing</li>
+            </ul>
+            <ul class="marquee-list" aria-hidden="true">
+              <li>Razer</li><li>iRacing</li><li>Corsair</li>
+              <li>Fanatec</li><li>Logitech G</li><li>Moza Racing</li>
+            </ul>
+          </div>
+        </div>
+        <div class="lib-canvas" style="margin-top:0.75rem; font-family:'Courier New',monospace; font-size:0.72rem; line-height:1.7; color:rgba(0,0,0,0.5);">
+          <p><strong style="color:var(--color-black);">técnica</strong> — lista A + lista B idénticas · translateX(0) → translateX(-50%)</p>
+          <p><strong style="color:var(--color-black);">duración</strong> — 15s linear infinite</p>
+          <p><strong style="color:var(--color-black);">pausa en hover</strong> — animation-play-state: paused</p>
+          <p><strong style="color:var(--color-black);">logos</strong> — filter: brightness(0) invert(1) · opacity: 0.45 → 1 on hover</p>
+          <p><strong style="color:var(--color-black);">mask</strong> — linear-gradient fade izq/der 8% cada lado</p>
+        </div>
+      </section>
+
+      <!-- ===== ANIMACIONES ===== -->
+      <section class="lib-section" id="animaciones">
+        <p class="lib-section__title">Motion</p>
+        <h2 class="lib-section__name">Animaciones</h2>
+        <div class="lib-canvas">
+          <div class="anim-grid">
+
+            <div class="anim-item">
+              <span class="anim-item__label">Botones hover</span>
+              <span class="anim-item__value">transform: scale(1.06)<br>0.18s ease</span>
+              <button class="anim-demo-btn anim-demo-btn--scale"></button>
+            </div>
+
+            <div class="anim-item">
+              <span class="anim-item__label">Logo scroll fade</span>
+              <span class="anim-item__value">opacity: 0 → 1<br>0.3s ease</span>
+              <div style="margin-top:0.5rem; width:80px; height:36px; border-radius:8px; background:var(--color-black); transition: opacity 0.3s ease;" onmouseenter="this.style.opacity='0'" onmouseleave="this.style.opacity='1'"></div>
+            </div>
+
+            <div class="anim-item">
+              <span class="anim-item__label">Menu panel</span>
+              <span class="anim-item__value">opacity + translateY(-8px)<br>0.2s ease</span>
+            </div>
+
+            <div class="anim-item">
+              <span class="anim-item__label">Dots rotation</span>
+              <span class="anim-item__value">rotate(90deg)<br>0.25s ease</span>
+              <button class="btn btn--menu" style="margin-top:0.5rem; pointer-events:all;">
+                MENU
+                <span class="btn__dots">
+                  <span class="btn__dots-inner"><span></span><span></span></span>
+                </span>
+              </button>
+            </div>
+
+            <div class="anim-item">
+              <span class="anim-item__label">Menu link hover</span>
+              <span class="anim-item__value">background: white<br>0.5s ease</span>
+            </div>
+
+            <div class="anim-item">
+              <span class="anim-item__label">Brands marquee</span>
+              <span class="anim-item__value">translateX(-50%)<br>15s linear infinite</span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+</body>
+</html>

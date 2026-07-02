@@ -9,3 +9,9 @@
     src: url("fonts/TuskerGrotesk-6500Medium.ttf") format("truetype");
     font-weight: 400;
 }
+
+@font-face {
+    font-family: "Tusker";
+    src: url("fonts/TuskerGrotesk-4500Medium.ttf") format("truetype");
+    font-weight: 600;
+}

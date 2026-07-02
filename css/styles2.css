@@ -388,6 +388,8 @@ position: relative;
   padding: clamp(1rem, 2.5vw, 1.75rem) 0;
   position: relative;
   z-index: 2; /* pasa por encima de la forma */
+  display: flex;
+  align-items: center;
 }
 
 /* Recorta el track para que solo se vea el ancho de la sección */
@@ -531,24 +533,29 @@ position: relative;
 }
 
 /* ===== FORMAMOS PILOTOS — grid de servicios ===== */
+/* .brands + .services suman 100dvh entre las dos */
 .services {
   background: var(--color-white);
-  padding: clamp(3rem, 7vw, 6rem) 0;
+  padding: clamp(2rem, 5vw, 3.5rem) 0;
+  min-height: calc(100dvh - 100px); /* 100px ≈ alto aprox de .brands con su padding */
+  display: flex;
+  align-items: center;
 }
 
 .services__inner {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 clamp(1.25rem, 4vw, 3rem);
+  width: 100%;
 }
 
-/* --- Encabezado: título izq / bajada der --- */
+/* --- Encabezado: título arriba, bajada abajo (apilados a la izquierda) --- */
 .services__header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: flex-start;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  gap: 0.75rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
 .services__title {
@@ -557,8 +564,15 @@ position: relative;
   text-transform: uppercase;
   line-height: 0.95;
   color: var(--color-black);
-  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
-  flex: 0 1 auto;
+  font-size: clamp(3.3rem, 6.75vw, 5.25rem);
+}
+
+/* "pilotos" con fondo lime, mismo patrón que otras secciones */
+.services__title--highlight {
+  background: var(--color-lime);
+  color: var(--color-black);
+  padding: 0 0.15em;
+  display: inline-block;
 }
 
 .services__subtitle {
@@ -567,9 +581,8 @@ position: relative;
   text-transform: uppercase;
   line-height: 1.45;
   color: var(--color-light-text);
-  text-align: right;
-  max-width: 40ch;
-  flex: 0 1 auto;
+  text-align: left;
+  max-width: 55ch;
 }
 
 /* --- Grid de tarjetas --- */
@@ -580,16 +593,101 @@ position: relative;
   list-style: none;
 }
 
+/* ===== FLIP CARD ===== */
+/* El <li> define el tamaño y el contexto de perspectiva 3D */
 .service-card {
+  border-radius: 16px;
+  perspective: 1200px;
+  aspect-ratio: 4 / 5;
+}
+
+/* .inner es lo que rota; sus dos hijos (front/back) quedan superpuestos */
+.service-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+/* Ambas caras ocupan exactamente el mismo lugar, una encima de otra */
+.service-card__face {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* ----- CARA FRONTAL: foto + label inferior (estado default) ----- */
+.service-card__face--front {
+  border: 1.5px solid var(--color-lime);
+  display: flex;
+  align-items: flex-end;
+}
+
+.service-card__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale();
+  transition: transform 0.4s ease;
+}
+
+.service-card__photo:hover {
+  filter: none;
+}
+
+.service-card:hover .service-card__photo {
+  transform: scale(1.06);
+}
+
+.service-card.is-flipped .service-card__inner {
+  transform: rotateY(180deg);
+}
+
+.service-card__label {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   background: var(--color-black);
   border: 1.5px solid var(--color-lime);
-  border-radius: 16px;
-  padding: clamp(2rem, 4vw, 2.75rem) clamp(1.25rem, 3vw, 2rem);
+  border-radius: 10px;
+  margin: 0.9rem;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(0.78rem, 0.95vw, 0.88rem);
+  color: var(--color-white);
+}
+
+.service-card__label-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* ----- CARA TRASERA: diseño original, rotada 180° de antemano ----- */
+.service-card__face--back {
+  background: var(--color-black);
+  border: 1.5px solid var(--color-lime);
+  transform: rotateY(180deg);
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 3vw, 2rem);
 }
 
 .service-card__icon {
@@ -597,9 +695,6 @@ position: relative;
   height: clamp(56px, 6vw, 72px);
   object-fit: contain;
   margin-bottom: clamp(1.5rem, 3vw, 2rem);
-  /* Si tu SVG ya viene en verde lima, no necesitás filtros.
-     Si viniera en negro/otro color, podés forzarlo con: */
-  /* filter: brightness(0) saturate(100%) invert(78%) sepia(64%) saturate(900%) hue-rotate(50deg); */
 }
 
 .service-card__title {
@@ -623,29 +718,45 @@ position: relative;
 
 /* ===== RESPONSIVE ===== */
 
-/* Tablet: 2 columnas. La 6ta tarjeta queda sola en la última fila,
-   se mantiene alineada a la izquierda (comportamiento natural del grid) */
+/* Tablet: 2 columnas */
 @media (max-width: 1024px) {
   .services__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Mobile: encabezado se apila (título arriba, bajada abajo, ambos a la izquierda)
-   y las tarjetas pasan a una sola columna */
+/* Mobile: una columna, sin flip (hover no existe en touch) */
 @media (max-width: 700px) {
-  .services__header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .services__subtitle {
-    text-align: left;
-    max-width: none;
+  .services {
+    min-height: auto;
   }
 
   .services__grid {
     grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    aspect-ratio: auto;
+  }
+
+  .service-card__inner {
+    transition: none;
+  }
+
+  .service-card:hover .service-card__inner {
+    transform: none;
+  }
+
+  .service-card__face {
+    position: relative;
+  }
+
+  .service-card__face--back {
+    display: none; /* en mobile mostramos solo la cara frontal */
+  }
+
+  .service-card__face--front {
+    aspect-ratio: 4 / 5;
   }
 }
 
@@ -784,12 +895,18 @@ position: relative;
   width: 100%;
 }
 
+.programs__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 /* Encabezado: mismo patrón que .services__header */
 .programs__header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: flex-start;
-  gap: clamp(1.5rem, 4vw, 3rem);
+  gap: 2rem;
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
@@ -799,7 +916,7 @@ position: relative;
   text-transform: uppercase;
   line-height: 1.0;
   color: var(--color-black);
-  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-size: clamp(3.3rem, 6.75vw, 5.25rem);
   flex: 0 1 auto;
 }
 
@@ -813,8 +930,8 @@ position: relative;
   text-transform: uppercase;
   line-height: 1.45;
   color: var(--color-light-text);
-  text-align: right;
-  max-width: 40ch;
+  text-align: left;
+  max-width: 55ch;
   flex: 0 1 auto;
 }
 
@@ -841,7 +958,6 @@ position: relative;
   font-size: clamp(2.2rem, 4.5vw, 3.5rem);
   color: var(--color-white);
   line-height: 1;
-  opacity: 0.9;
 }
 
 /* Bloque superior: título + badge apilados */
@@ -849,12 +965,12 @@ position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .program-card__title {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
   line-height: 1;
   letter-spacing: 0.01em;
@@ -877,7 +993,22 @@ position: relative;
   border-radius: 6px;
 }
 
+.condicional {
+  background-color: #ffffff;
+}
+
+.proximamente {
+  background-color: #1e1e28;
+  color: #ffffff;
+}
+
 /* Tags de características */
+.program-card__bot {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .program-card__tags {
   list-style: none;
   display: flex;
@@ -901,7 +1032,7 @@ position: relative;
 .program-card__desc {
   font-family: var(--font-body);
   font-size: clamp(0.85rem, 1vw, 0.95rem);
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   line-height: 1.5;
   color: var(--color-white);
@@ -915,6 +1046,10 @@ position: relative;
   gap: 1rem;
 }
 
+.bloq {
+  display: flex;
+}
+
 /* Botón azul — exclusivo de esta sección */
 .btn--blue {
   background: var(--color-blue);
@@ -925,10 +1060,21 @@ position: relative;
   font-size: clamp(0.85rem, 1.1vw, 1rem);
 }
 
+.prox {
+  cursor: not-allowed;
+  background-color: #1e1e28;
+}
+
 .btn--blue:hover {
   transform: scale(1.03);
   background: #1535e8;
 }
+
+.prox:hover {
+  transform: scale(1.03);
+  background: #1e1e28;
+}
+
 
 .btn--blue .btn__icon {
   filter: invert(1);
@@ -978,5 +1124,631 @@ position: relative;
 
   .program-card__actions {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ===== TALENTO APEX ===== */
+.talent {
+  background: var(--color-black);
+  padding: clamp(3rem, 7vw, 6rem) 0;
+}
+
+.talent__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+  width: 100%;
+}
+
+/* Título alineado a la derecha */
+.talent__header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.talent__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(3.3rem, 6.75vw, 5.25rem);
+  line-height: 1;
+  color: var(--color-white);
+}
+
+/* "APEX" con fondo azul */
+.talent__title--highlight {
+  background: var(--color-blue);
+  color: var(--color-white);
+  padding: 0 0.15em;
+  display: inline-block;
+}
+
+/* Grid principal:
+   3 columnas, filas automáticas de ~280px.
+   El layout replica la imagen:
+   col1: foto tall (rows 1-2) + 2 fotos pequeñas (rows 3)
+   col2-3: 2 medianas (row 1) + foto tall derecha (rows 2-3) */
+.talent__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.7fr 0.7fr;
+  grid-template-rows: repeat(3, minmax(240px, 1fr));
+  gap: 0.75rem;
+}
+
+/* Foto genérica */
+.talent__photo {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1.5px solid var(--color-lime);
+  background: #111;
+}
+
+.talent__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Foto grande izquierda: filas 1 y 2, columna 1 */
+.talent__photo--tall {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+/* Foto 2: fila 1, columna 2 */
+.talent__photo:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* Foto 3: fila 1, columna 3 */
+.talent__photo:nth-child(3) {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+/* Foto 4: fila 3, columna 1 */
+.talent__photo:nth-child(4) {
+  grid-column: 1; /* se ubica debajo de la tall automáticamente */
+  grid-row: 3;
+}
+
+/* Foto 5: fila 3, columna 2 */
+.talent__photo:nth-child(5) {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+/* Foto grande derecha: filas 2 y 3, columnas 2-3 */
+.talent__photo--tall-right {
+  grid-column: 2 / 4;
+  grid-row: 2 / 4;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .talent__grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .talent__photo--tall,
+  .talent__photo--tall-right {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .talent__photo:nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+/* ===== VALIDACIÓN ===== */
+.validation {
+  background: var(--color-white);
+  padding: clamp(3rem, 7vw, 6rem) 0;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+}
+
+.validation__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+  width: 100%;
+}
+
+/* Encabezado: mismo patrón que .programs__header */
+.validation__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.validation__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.0;
+  color: var(--color-black);
+  font-size: clamp(3.3rem, 6.75vw, 5.25rem);
+  flex: 0 1 auto;
+}
+
+/* "2027" con fondo lime */
+.validation__title--highlight {
+  background: var(--color-lime);
+  color: var(--color-black);
+  display: inline-block;
+}
+
+.validation__subtitle {
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.45;
+  color: var(--color-light-text);
+  text-align: left;
+  max-width: 55ch;
+  flex: 0 1 auto;
+}
+
+/* ===== FORMULARIO ===== */
+.validation__form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem clamp(1.5rem, 4vw, 3rem);
+}
+
+/* Label de campo */
+.form-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--color-black);
+  margin-bottom: 0.6rem;
+}
+
+/* Input de texto / email */
+.form-input {
+  width: 100%;
+  background: #ebebf0;
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 1.05rem 1.25rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--color-black);
+  outline: none;
+  transition: border-color 0.18s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-input::placeholder {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.form-input:focus {
+  border-color: var(--color-blue);
+}
+
+/* Select: wrapper para custom arrow */
+.form-select-wrapper {
+  position: relative;
+}
+
+.form-select {
+  cursor: pointer;
+  padding-right: 3rem; /* espacio para la flecha */
+}
+
+.form-select-arrow {
+  position: absolute;
+  top: 50%;
+  right: 1.25rem;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: var(--color-black);
+  pointer-events: none;
+  line-height: 1;
+}
+
+/* Área de upload */
+.form-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: #ebebf0;
+  border: 2px solid var(--color-black);
+  border-radius: 12px;
+  padding: 2rem 1.25rem;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease;
+  min-height: 130px;
+}
+
+.form-upload:hover {
+  border-color: var(--color-blue);
+  background: #e3e6f5;
+}
+
+.form-upload__input {
+  display: none; /* oculto, el click lo dispara el label */
+}
+
+.form-upload__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--color-blue);
+  color: var(--color-white);
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.form-upload__text {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--color-black);
+}
+
+/* Botón submit — solo columna izquierda */
+.form-group--submit {
+  grid-column: 1 / 2;
+}
+
+.form-group--submit .btn {
+  padding: 1.05rem 2rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .validation__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .validation__subtitle {
+    text-align: left;
+    max-width: none;
+  }
+
+  .validation__form {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group--submit {
+    grid-column: 1 / 2;
+  }
+}
+
+/* ===== NUESTRO SIMULADOR ===== */
+.simulator {
+  background: var(--color-black);
+  padding: clamp(3rem, 7vw, 6rem) 0;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+}
+
+.simulator__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+  width: 100%;
+}
+
+/* Título centrado */
+.simulator__header {
+  text-align: center;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.simulator__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(3.3rem, 6.75vw, 5.25rem);
+  line-height: 1;
+  color: var(--color-white);
+}
+
+/* "simulador" con fondo azul */
+.simulator__title--highlight {
+  background: var(--color-blue);
+  color: var(--color-white);
+  padding: 0 0.15em;
+  display: inline-block;
+}
+
+/* Lista de componentes */
+.simulator__list {
+  list-style: none;
+}
+
+/* Cada fila */
+.sim-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-top: 1.5px solid var(--color-lime);
+  transition: all 0.5s ease;
+}
+
+.sim-item:hover {
+  background: var(--color-white);
+}
+
+.sim-item:hover .sim-item__name {
+  color: var(--color-black);
+}
+
+.sim-item:hover .sim-item__spec {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.sim-item:hover .sim-item__info {
+  transform: translateX(1rem);
+}
+
+.sim-item:hover .sim-item__arrow {
+  transform: translateX(-1rem);
+}
+
+.sim-item:hover .sim-item__arrow img {
+  filter: none; /* la flecha estaba invertida a blanco, la volvés a negro */
+}
+
+/* Última fila también tiene borde inferior */
+.sim-item:last-child {
+  border-bottom: 1.5px solid var(--color-lime);
+}
+
+.sim-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: all 0.5s ease;
+}
+
+.sim-item__name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  line-height: 1;
+  color: var(--color-white);
+  transition: all 0.5s ease;
+}
+
+.sim-item__spec {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.5s ease;
+}
+
+/* Flecha — mismo estilo que el resto de la web */
+.sim-item__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.5s ease;
+}
+
+.sim-item__arrow img {
+  width: 20px;
+  height: 20px;
+  filter: invert(1); /* la flecha es negra, la invertimos a blanca */
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .simulator {
+    min-height: auto;
+  }
+
+  .sim-item__name {
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+  }
+}
+
+/*CORRECCION DE FONDITOS*/
+
+.services__title--highlight,
+.programs__title--accent,
+.validation__title--highlight,
+.simulator__title--highlight,
+.talent__title--highlight {
+  padding-top: 0em;
+  padding-bottom: 0.25em;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  position: relative;
+  background: var(--color-black);
+  min-height: 100dvh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* Imagen ocupa todo el footer como fondo */
+.footer__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.footer__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%);
+}
+
+/* Panel negro redondeado — flota encima de la imagen */
+.footer__panel {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin: 0 clamp(1.25rem, 2vw, 1.5rem);  /* ← solo margen lateral */
+  background: var(--color-black);
+  border-radius: 24px;
+  padding: clamp(2rem, 4vw, 3rem);
+}
+
+.footer__panel-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Fila superior: logo izq / redes der */
+.footer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__top .logo-img {
+  filter: invert(1);
+}
+
+/* Botones de redes sociales */
+.footer__social {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.footer__social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-white);
+  transition: background 0.2s ease, transform 0.18s ease;
+}
+
+.footer__social-btn:hover {
+  background: var(--color-lime);
+  transform: scale(1.08);
+}
+
+.footer__social-btn img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* Contacto */
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer__contact-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-white);
+  margin-bottom: 0.25rem;
+}
+
+.footer__contact-item {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a.footer__contact-item:hover {
+  color: var(--color-lime);
+}
+
+/* Fila inferior */
+.footer__bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer__tagline {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.35);
+  max-width: 35ch;
+}
+
+.footer__copy {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.footer__copy p {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .footer__panel {
+    margin-top: clamp(6rem, 18vw, 10rem);
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer__copy {
+    text-align: left;
   }
 }

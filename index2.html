@@ -49,10 +49,10 @@
           <nav class="menu__panel" id="menu-panel" data-menu-panel aria-label="Navegación principal">
             <ul class="menu__list">
               <li><a href="#inicio" class="menu__link">Inicio</a></li>
-              <li><a href="#data" class="menu__link">Data</a></li>
-              <li><a href="#cockpit" class="menu__link">Cockpit</a></li>
-              <li><a href="#ingreso" class="menu__link">Ingreso</a></li>
-              <li><a href="#pilotos" class="menu__link">Pilotos</a></li>
+              <li><a href="#nosotros" class="menu__link">Nosotros</a></li>
+              <li><a href="#cursos" class="menu__link">Cursos</a></li>
+              <li><a href="#simuladores" class="menu__link">Simulador</a></li>
+              <li><a href="#inscribite" class="menu__link">Inscribite</a></li>
             </ul>
           </nav>
         </div>
@@ -161,12 +161,12 @@
     </section>
 
     <!-- ===== FORMAMOS PILOTOS — grid de servicios ===== -->
-<section class="services" id="data">
+<section class="services" id="nosotros">
   <div class="services__inner">
 
-    <!-- Encabezado: título a la izquierda, bajada a la derecha -->
+    <!-- Encabezado: título arriba, bajada abajo (apilados) -->
     <div class="services__header">
-      <h2 class="services__title">Formamos pilotos</h2>
+      <h2 class="services__title">Formamos <span class="services__title--highlight">pilotos</span></h2>
       <p class="services__subtitle">
         Transformamos tus datos de conducción en mejoras concretas
         para llevar tu rendimiento al siguiente nivel
@@ -177,49 +177,262 @@
     <ul class="services__grid">
 
       <li class="service-card">
-        <!-- Reemplazá este SVG por el ícono real -->
-        <img class="service-card__icon" src="assets/icons/telemetria.svg" alt="">
-        <h3 class="service-card__title">Análisis de<br>telemetría real</h3>
-        <p class="service-card__text">Comparación de trazadas, frenado, throttle maps</p>
+        <div class="service-card__inner">
+
+          <!-- Cara frontal: foto + label con ícono -->
+          <div class="service-card__face service-card__face--front">
+            <img class="service-card__photo" src="assets/services/telemetria.png" alt="">
+            <span class="service-card__label">
+              <img class="service-card__label-icon" src="assets/icons/telemetria.svg" alt="">
+              Análisis de telemetría real
+            </span>
+          </div>
+
+          <!-- Cara trasera: diseño original -->
+          <div class="service-card__face service-card__face--back">
+            <img class="service-card__icon" src="assets/icons/telemetria.svg" alt="">
+            <h3 class="service-card__title">Análisis de<br>telemetría real</h3>
+            <p class="service-card__text">Comparación de trazadas, frenado, throttle maps</p>
+          </div>
+
+        </div>
       </li>
 
       <li class="service-card">
-        <img class="service-card__icon" src="assets/icons/coaching.svg" alt="">
-        <h3 class="service-card__title">Coaching<br>estilo academia</h3>
-        <p class="service-card__text">Feedback 1:1 basado en datos reales</p>
+        <div class="service-card__inner">
+
+          <div class="service-card__face service-card__face--front">
+            <img class="service-card__photo" src="assets/services/coaching.png" alt="">
+            <span class="service-card__label">
+              <img class="service-card__label-icon" src="assets/icons/coaching.svg" alt="">
+              Coaching estilo academia
+            </span>
+          </div>
+
+          <div class="service-card__face service-card__face--back">
+            <img class="service-card__icon" src="assets/icons/coaching.svg" alt="">
+            <h3 class="service-card__title">Coaching<br>estilo academia</h3>
+            <p class="service-card__text">Feedback 1:1 basado en datos reales</p>
+          </div>
+
+        </div>
       </li>
 
       <li class="service-card">
-        <img class="service-card__icon" src="assets/icons/setup.svg" alt="">
-        <h3 class="service-card__title">Setup<br>engineering</h3>
-        <p class="service-card__text">Entender el setup como un ingeniero (no "turning casual")</p>
-      </li>
+        <div class="service-card__inner">
 
-      <li class="service-card">
-        <img class="service-card__icon" src="assets/icons/simulacion.svg" alt="">
-        <h3 class="service-card__title">Simulación<br>competitiva</h3>
-        <p class="service-card__text">Entrenamientos tipo qualifying / race pace / presión</p>
-      </li>
+          <div class="service-card__face service-card__face--front">
+            <img class="service-card__photo" src="assets/services/setup.png" alt="">
+            <span class="service-card__label">
+              <img class="service-card__label-icon" src="assets/icons/setup.svg" alt="">
+              Setup engineering
+            </span>
+          </div>
 
-      <li class="service-card">
-        <img class="service-card__icon" src="assets/icons/evaluacion.svg" alt="">
-        <h3 class="service-card__title">Evaluación<br>de performance</h3>
-        <p class="service-card__text">Ranking interno tipo "driver ladder"</p>
-      </li>
+          <div class="service-card__face service-card__face--back">
+            <img class="service-card__icon" src="assets/icons/setup.svg" alt="">
+            <h3 class="service-card__title">Setup<br>engineering</h3>
+            <p class="service-card__text">Entender el setup como un ingeniero (no "turning casual")</p>
+          </div>
 
-      <li class="service-card">
-        <img class="service-card__icon" src="assets/icons/telemetria2.svg" alt="">
-        <h3 class="service-card__title">Análisis de<br>telemetría real</h3>
-        <p class="service-card__text">Comparación de trazadas, frenado, throttle maps</p>
+        </div>
       </li>
 
     </ul>
 
   </div>
 </section>
+
+<!-- ===== PROGRAMAS — "Rumbo hacia la F3 física" ===== -->
+<section class="programs" id="cursos">
+  <div class="programs__inner">
+
+    <!-- Encabezado: título izq / bajada der (mismo patrón que .services) -->
+    <div class="programs__header">
+      <h2 class="programs__title">
+        Rumbo hacia la <span class="programs__title--accent">F3 física</span>
+      </h2>
+      <p class="programs__subtitle">
+        Cada piloto tiene un punto de partida. Nosotros medimos el camino hasta el siguiente nivel.
+      </p>
+    </div>
+
+    <!-- Lista de cards -->
+    <div class="programs__list">
+
+      <!-- Card 01 -->
+      <div class="program-card">
+        <span class="program-card__index">01</span>
+        <div class="program-card__top">
+          <h3 class="program-card__title">Optimización de delta</h3>
+          <span class="program-card__badge">Disponible</span>
+        </div>
+        <div class="program-card__bot">
+          <ul class="program-card__tags">
+            <li class="program-card__tag">Análisis de sectores</li>
+            <li class="program-card__tag">Comparación de referencia</li>
+            <li class="program-card__tag">Técnica de conducción</li>
+            <li class="program-card__tag">Plan de mejora</li>
+          </ul>
+          <p class="program-card__desc">
+          Convertimos tus vueltas en información. Detectamos dónde perdés tiempo
+          y diseñamos una estrategia para reducir tu delta vuelta a vuelta.
+          </p>
+          <div class="program-card__actions">
+            <a href="#ingreso" class="btn btn--blue">
+              Reserva tu lugar
+              <img class="btn__icon" src="assets/flecha1.svg" alt="">
+            </a>
+            <a href="#" class="btn btn--outline-white">
+            Ver programa
+            <img class="btn__icon" src="assets/flecha1.svg" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 02 -->
+      <div class="program-card">
+        <span class="program-card__index">02</span>
+        <div class="program-card__top">
+          <h3 class="program-card__title">Programa de desarrollo</h3>
+          <span class="program-card__badge condicional">Condicional</span>
+        </div>
+        <div class="program-card__bot">
+        <ul class="program-card__tags">
+          <li class="program-card__tag">Vueltas consistentes</li>
+          <li class="program-card__tag">Adaptación a circuitos</li>
+          <li class="program-card__tag">Ajuste de setup</li>
+          <li class="program-card__tag">Lectura de telemetría</li>
+        </ul>
+        <p class="program-card__desc">
+          La velocidad es solo una parte del piloto. Antes de llegar a la pista real, evaluamos tu capacidad para repetir, adaptarte y evolucionar.
+        </p>
+        <div class="program-card__actions">
+          <a href="#rendimiento" class="btn btn--blue">
+            Validar mi rendimiento
+            <img class="btn__icon" src="assets/flecha1.svg" alt="">
+          </a>
+          <a href="#" class="btn btn--outline-white">
+            Ver programa
+            <img class="btn__icon" src="assets/flecha1.svg" alt="">
+          </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 03 -->
+      <div class="program-card">
+        <span class="program-card__index">03</span>
+        <div class="program-card__top">
+          <h3 class="program-card__title">Test F3 real</h3>
+          <span class="program-card__badge proximamente">Próximamente</span>
+        </div>
+        <div class="program-card__bot">
+        <ul class="program-card__tags">
+          <li class="program-card__tag">Circuito real</li>
+          <li class="program-card__tag">Monoplaza F3</li>
+          <li class="program-card__tag">Evaluación técnica</li>
+          <li class="program-card__tag">Selección de pilotos</li>
+        </ul>
+        <p class="program-card__desc">
+          El paso final: Demostrar tu rendimiento en la pista física, en un entorno real, sometido a los desafíos que conllevan un circuito de verdad.
+        </p>
+        <div class="program-card__actions bloq">
+          <a href="#reserva" class="btn btn--blue prox">
+            Proximamente
+          </a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /programs__list -->
+    
+  </div>
+</section>
+
+<!-- ===== NUESTRO SIMULADOR ===== -->
+<section class="simulator" id="simuladores">
+  <div class="simulator__inner">
+
+    <!-- Título centrado -->
+    <div class="simulator__header">
+      <h2 class="simulator__title">
+        Nuestro <span class="simulator__title--highlight">simulador</span>
+      </h2>
+    </div>
+
+    <!-- Lista de componentes -->
+    <ul class="simulator__list">
+
+      <li class="sim-item">
+        <div class="sim-item__info">
+          <h3 class="sim-item__name">Chasis</h3>
+          <p class="sim-item__spec">Personalización APEX exclusiva</p>
+        </div>
+        <a href="#" class="sim-item__arrow" aria-label="Ver chasis">
+          <img src="assets/flecha1.svg" alt="">
+        </a>
+      </li>
+
+      <li class="sim-item">
+        <div class="sim-item__info">
+          <h3 class="sim-item__name">Volante</h3>
+          <p class="sim-item__spec">Fanatec ClubSport Steering Wheel Formula V2.5</p>
+        </div>
+        <a href="#" class="sim-item__arrow" aria-label="Ver volante">
+          <img src="assets/flecha1.svg" alt="">
+        </a>
+      </li>
+
+      <li class="sim-item">
+        <div class="sim-item__info">
+          <h3 class="sim-item__name">Base de volante</h3>
+          <p class="sim-item__spec">Fanatec Podium DD2 (25NM Direct Drive)</p>
+        </div>
+        <a href="#" class="sim-item__arrow" aria-label="Ver base de volante">
+          <img src="assets/flecha1.svg" alt="">
+        </a>
+      </li>
+
+      <li class="sim-item">
+        <div class="sim-item__info">
+          <h3 class="sim-item__name">Pedales</h3>
+          <p class="sim-item__spec">Heusinkveld Sim Pedals Ultimate+</p>
+        </div>
+        <a href="#" class="sim-item__arrow" aria-label="Ver pedales">
+          <img src="assets/flecha1.svg" alt="">
+        </a>
+      </li>
+
+      <li class="sim-item">
+        <div class="sim-item__info">
+          <h3 class="sim-item__name">Triple monitor</h3>
+          <p class="sim-item__spec">LG UltraGear 32" 165Hz Curved</p>
+        </div>
+        <a href="#" class="sim-item__arrow" aria-label="Ver triple monitor">
+          <img src="assets/flecha1.svg" alt="">
+        </a>
+      </li>
+
+      <li class="sim-item">
+        <div class="sim-item__info">
+          <h3 class="sim-item__name">Asiento</h3>
+          <p class="sim-item__spec">Sparco Grid Q Evo Carbon FIA</p>
+        </div>
+        <a href="#" class="sim-item__arrow" aria-label="Ver asiento">
+          <img src="assets/flecha1.svg" alt="">
+        </a>
+      </li>
+
+    </ul>
+
+  </div>
+</section>
+
 <!-- ===== CTA — "La pista te está esperando" ===== -->
 <!-- Reemplazá el src de .cta__bg-img por tu imagen de fondo (fotografía del simulador/pista) -->
-<section class="cta" id="ingreso">
+<section class="cta" id="inscribite">
 
   <div class="cta__bg">
     <img class="cta__bg-img" src="assets/fondo2.png" alt="">
@@ -253,62 +466,206 @@
 
 </section>
 
-<!-- ===== PROGRAMAS — "Rumbo hacia la F3 física" ===== -->
-<section class="programs" id="cockpit">
-  <div class="programs__inner">
+<!-- ===== TALENTO APEX — galería de fotos ===== -->
+<section class="talent" id="pilotos">
+  <div class="talent__inner">
 
-    <!-- Encabezado: título izq / bajada der (mismo patrón que .services) -->
-    <div class="programs__header">
-      <h2 class="programs__title">
-        Rumbo hacia la <span class="programs__title--accent">F3 física</span>
+    <!-- Título — arriba a la derecha -->
+    <div class="talent__header">
+      <h2 class="talent__title">
+        Talento <span class="talent__title--highlight">APEX</span>
       </h2>
-      <p class="programs__subtitle">
-        Cada piloto tiene un punto de partida. Nosotros medimos el camino hasta el siguiente nivel.
-      </p>
     </div>
 
-    <!-- Card de programa -->
-    <div class="program-card">
+    <!-- Grid de fotos -->
+    <div class="talent__grid">
 
-      <!-- Número de índice — arriba a la derecha -->
-      <span class="program-card__index">01</span>
-
-      <!-- Bloque superior: título + badge -->
-      <div class="program-card__top">
-        <h3 class="program-card__title">Optimización<br>de delta</h3>
-        <span class="program-card__badge">Disponible</span>
+      <!-- Foto grande izquierda — ocupa 2 filas -->
+      <div class="talent__photo talent__photo--tall">
+        <img src="assets/talent/foto1.jpg" alt="">
       </div>
 
-      <!-- Tags de características -->
-      <ul class="program-card__tags">
-        <li class="program-card__tag">Análisis de sectores</li>
-        <li class="program-card__tag">Comparación de referencia</li>
-        <li class="program-card__tag">Técnica de conducción</li>
-        <li class="program-card__tag">Plan de mejora</li>
-      </ul>
+      <!-- Fila derecha superior: 2 fotos medianas -->
+      <div class="talent__photo">
+        <img src="assets/talent/foto2.jpg" alt="">
+      </div>
+      <div class="talent__photo">
+        <img src="assets/talent/foto3.jpg" alt="">
+      </div>
 
-      <!-- Descripción -->
-      <p class="program-card__desc">
-        Convertimos tus vueltas en información. Detectamos dónde perdés tiempo
-        y diseñamos una estrategia para reducir tu delta vuelta a vuelta.
-      </p>
+      <!-- Fila izquierda inferior: 2 fotos pequeñas -->
+      <div class="talent__photo">
+        <img src="assets/talent/foto4.jpg" alt="">
+      </div>
+      <div class="talent__photo">
+        <img src="assets/talent/foto5.jpg" alt="">
+      </div>
 
-      <!-- Botones -->
-      <div class="program-card__actions">
-        <a href="#reserva" class="btn btn--blue">
-          Reserva tu lugar
-          <img class="btn__icon" src="assets/flecha1.svg" alt="">
-        </a>
-        <a href="#" class="btn btn--outline-white">
-          Ver programa
-          <img class="btn__icon" src="assets/flecha1.svg" alt="">
-        </a>
+      <!-- Foto grande derecha — ocupa 2 filas del lado derecho -->
+      <div class="talent__photo talent__photo--tall-right">
+        <img src="assets/talent/foto6.jpg" alt="">
       </div>
 
     </div>
-    
+
   </div>
 </section>
+
+<!-- ===== VALIDACIÓN — "¿Estás en el rango para 2027?" ===== -->
+<section class="validation" id="rendimiento">
+  <div class="validation__inner">
+
+    <!-- Encabezado -->
+    <div class="validation__header">
+      <h2 class="validation__title">
+        ¿Estás en el rango para <span class="validation__title--highlight">2027</span>?
+      </h2>
+      <p class="validation__subtitle">
+        Ingresá tus datos para validar tu rendimiento y calcular tu probabilidad de preselección
+      </p>
+    </div>
+
+    <!-- Formulario -->
+    <div class="validation__form">
+
+      <!-- Fila 1: Nombre + Plataforma -->
+      <div class="form-group">
+        <label class="form-label" for="nombre">Nombre*</label>
+        <input
+          class="form-input"
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="Nombre y apellido"
+          autocomplete="name"
+        >
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="plataforma">Plataforma*</label>
+        <div class="form-select-wrapper">
+          <select class="form-input form-select" id="plataforma" name="plataforma">
+            <option value="" disabled selected></option>
+            <option value="iracing">iRacing</option>
+            <option value="acc">Assetto Corsa Competizione</option>
+            <option value="ac">Assetto Corsa</option>
+            <option value="rf2">rFactor 2</option>
+            <option value="gt7">Gran Turismo 7</option>
+            <option value="otro">Otro</option>
+          </select>
+          <span class="form-select-arrow" aria-hidden="true">&#8964;</span>
+        </div>
+      </div>
+
+      <!-- Fila 2: Email + iRating -->
+      <div class="form-group">
+        <label class="form-label" for="email">Email*</label>
+        <input
+          class="form-input"
+          type="email"
+          id="email"
+          name="email"
+          placeholder="email@mail.com"
+          autocomplete="email"
+        >
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="irating">iRating/SR*</label>
+        <input
+          class="form-input"
+          type="text"
+          id="irating"
+          name="irating"
+          placeholder="Ej. 4200"
+        >
+      </div>
+
+      <!-- Fila 3: Adjuntar vuelta x2 -->
+      <div class="form-group">
+        <label class="form-label">Adjuntá tu vuelta*</label>
+        <label class="form-upload" for="vuelta1">
+          <input type="file" id="vuelta1" name="vuelta1" class="form-upload__input" accept="video/*,.csv,.ibt">
+          <span class="form-upload__icon" aria-hidden="true">+</span>
+          <span class="form-upload__text">Añadir archivos</span>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Adjuntá tu vuelta</label>
+        <label class="form-upload" for="vuelta2">
+          <input type="file" id="vuelta2" name="vuelta2" class="form-upload__input" accept="video/*,.csv,.ibt">
+          <span class="form-upload__icon" aria-hidden="true">+</span>
+          <span class="form-upload__text">Añadir archivos</span>
+        </label>
+      </div>
+
+      <!-- Botón enviar — ocupa columna izquierda -->
+      <div class="form-group form-group--submit">
+        <button type="button" class="btn btn--blue">
+          Validar mi rendimiento
+          <img class="btn__icon" src="assets/flecha1.svg" alt="">
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+
+  <div class="footer__bg">
+    <img src="assets/pista.jpg" alt="" class="footer__bg-img">
+  </div>
+
+  <!-- Panel negro redondeado encima de la imagen -->
+  <div class="footer__panel">
+    <div class="footer__panel-inner">
+
+      <!-- Fila superior: logo izq / redes der -->
+      <div class="footer__top">
+        <a href="#" class="logo" aria-label="APEX - Inicio">
+          <img class="logo-img" src="assets/logo-apex.png" alt="APEX">
+        </a>
+        <div class="footer__social">
+          <a href="#" class="footer__social-btn" aria-label="Instagram">
+            <img src="assets/icons/instagram.svg" alt="">
+          </a>
+          <a href="#" class="footer__social-btn" aria-label="Twitter / X">
+            <img src="assets/icons/twitter.svg" alt="">
+          </a>
+          <a href="#" class="footer__social-btn" aria-label="YouTube">
+            <img src="assets/icons/youtube.svg" alt="">
+          </a>
+        </div>
+      </div>
+
+      <!-- Contacto -->
+      <div class="footer__contact">
+        <p class="footer__contact-label">Contacto</p>
+        <a href="mailto:apex@gmail.com" class="footer__contact-item">apex@gmail.com</a>
+        <p class="footer__contact-item">P. Sherman, Calle Wallaby 42, Sidney</p>
+        <a href="tel:+5432165498" class="footer__contact-item">+54 321 654 987</a>
+      </div>
+
+      <!-- Fila inferior: tagline + copyright -->
+      <div class="footer__bottom">
+        <p class="footer__tagline">
+          Telemetría profesional. Coaching competitivo.<br>
+          preparación para el mundo real del autmovilismo
+        </p>
+        <div class="footer__copy">
+          <p>2026 Apex Inc.</p>
+          <p>Todos los derechos reservados</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</footer>
+
   </main>
 
   <script src="js/script.js"></script>
